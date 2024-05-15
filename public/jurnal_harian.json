@@ -1,0 +1,37 @@
+[
+  {
+    "kode akun": "203",
+    "id transaksi": "77768842-618f-46f7-aeca-f7e42d637890",
+    "waktu transaksi": "12 Desember 2023",
+    "nominal": "321000",
+    "posisi saldo": "debit"
+  },
+  {
+    "kode akun": "211",
+    "id transaksi": "6b824fe0-6889-4fa0-9fa3-ac5c4d21e77a",
+    "waktu transaksi": "12 Desember 2023",
+    "nominal": "200000",
+    "posisi saldo": "debit"
+  },
+  {
+    "kode akun": "767",
+    "id transaksi": "859ce78f-4aef-4a53-8699-5f7be00f81e5",
+    "waktu transaksi": "12 Desember 2023",
+    "nominal": "150000",
+    "posisi saldo": "kredit"
+  },
+  {
+    "kode akun": "426",
+    "id transaksi": "31129728-aef6-47a3-96a0-3136d3a3e599",
+    "waktu transaksi": "12 Desember 2023",
+    "nominal": "400000",
+    "posisi saldo": "debit"
+  },
+  {
+    "kode akun": "358",
+    "id transaksi": "ab32dfdb-7ec8-4400-b0ac-79b9fba630c5",
+    "waktu transaksi": "12 Desember 2023",
+    "nominal": "2000000",
+    "posisi saldo": "kredit"
+  }
+]
