@@ -79,6 +79,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Detail Transaksi</h6>
+                        <a class="collapse-item" href="/dataMasuk">Tambah Data</a>
                         <a class="collapse-item" href="/dataSimpanan">Simpanan</a>
                         <a class="collapse-item" href="/dataPinjaman">Pinjaman</a>
                         <a class="collapse-item" href="/jurnalUmum">Jurnal Umum</a>
@@ -235,7 +236,7 @@
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Name: activate to sort column ascending"
-                                                        style="width: 52px;">Kode Akun</th>
+                                                        style="width: 52px;">Jenis</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Office: activate to sort column ascending"
@@ -248,6 +249,10 @@
                                                         rowspan="1" colspan="1"
                                                         aria-label="Age: activate to sort column ascending"
                                                         style="width: 51px;">Posisi Saldo</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Keterangan</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="data">
@@ -274,7 +279,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Your Website 2024</span>
                     </div>
                 </div>
             </footer>
@@ -366,10 +371,11 @@
 
             data.forEach(item => {
                 const row = `<tr>
-                        <td>${item["id_akun"]}</td>
+                        <td>${item["nama"]}</td>
                         <td>${ubahFormatTanggal(item.waktu)}</td>
                         <td>${formatCurrency(parseFloat(item.nominal))}</td>
                         <td>${item["posisi_saldo"]}</td>
+                        <td>${item.ket ? item.ket: '-'}</td>
                     </tr>`;
                 tbody.innerHTML += row;
                 const nominalValue = parseInt(item.nominal, 10);
@@ -409,15 +415,17 @@
                 const columns = row.querySelectorAll('td');
                 const rowData = {};
 
-                rowData["id_akun"] = columns[0].innerText;
+                rowData["nama"] = columns[0].innerText;
                 rowData["waktu"] = columns[1].innerText;
 
                 // Extract numeric value from currency-formatted string
                 rowData["nominal"] = parseCurrencyValue(columns[2].innerText);
 
                 rowData["posisi_saldo"] = columns[3].innerText;
+                rowData["ket"] = columns[4].innerText;
 
                 data.push(rowData);
+                console.log(rowData);
             });
 
             return data;
@@ -441,10 +449,10 @@
         function generatePDF(data) {
             let totalDebit = 0;
             let totalKredit = 0;
+            console.log('Input Data:', data);
 
             data.forEach((dataItem) => {
                 const nominalValue = parseInt(dataItem.nominal, 10);
-
                 if (dataItem['posisi_saldo'] === 'Debit') {
                     totalDebit += nominalValue;
                 } else if (dataItem['posisi_saldo'] === 'Kredit') {
@@ -473,14 +481,15 @@
                     {
                         table: {
                             headerRows: 1,
-                            widths: ['auto', 'auto', 'auto', 'auto'],
+                            widths: ['auto', 'auto', 'auto', 'auto', 'auto'],
                             body: [
-                                ['Kode Akun', 'Waktu Transaksi', 'Nominal', 'Posisi Saldo'],
+                                ['Jenis', 'Waktu Transaksi', 'Nominal', 'Posisi Saldo', 'Keterangan'],
                                 ...data.map(item => [
-                                    item["id_akun"],
-                                    ubahFormatTanggal(item.waktu),
+                                    item["nama"],
+                                    item.waktu,
                                     formatCurrency(item.nominal),
-                                    item["posisi_saldo"]
+                                    item["posisi_saldo"],
+                                    item.ket ? item.ket : '-'
                                 ]),
                                 [{
                                         text: 'Total:',
@@ -491,9 +500,11 @@
                                     {},
                                     {
                                         text: formatCurrency(totalValue),
-                                        colSpan: 2,
-                                        alignment: 'center'
+                                        alignment: 'center',
+                                        colSpan: 3
                                     },
+                                    {},
+                                    {}
                                 ]
                             ]
                         }

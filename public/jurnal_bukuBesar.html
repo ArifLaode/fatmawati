@@ -79,6 +79,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Detail Transaksi</h6>
+                        <a class="collapse-item" href="/dataMasuk">Tambah Data</a>
                         <a class="collapse-item" href="/dataSimpanan">Simpanan</a>
                         <a class="collapse-item" href="/dataPinjaman">Pinjaman</a>
                         <a class="collapse-item" href="/jurnalUmum">Jurnal Umum</a>
@@ -254,7 +255,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <h2>Pengeluaran</h2>
+                                <h2>Pengeluaran Koperasi</h2>
                             </div>
                         </div>
                         <br>
@@ -270,7 +271,7 @@
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Name: activate to sort column ascending"
-                                                        style="width: 52px;">Kode Akun</th>
+                                                        style="width: 52px;">Nama</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Office: activate to sort column ascending"
@@ -283,6 +284,10 @@
                                                         rowspan="1" colspan="1"
                                                         aria-label="Age: activate to sort column ascending"
                                                         style="width: 51px;">Posisi Saldo</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Keterangan</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="dataKredit">
@@ -304,7 +309,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <h2>Pendapatan</h2>
+                                <h2>Pendapatan Koperasi</h2>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -319,7 +324,7 @@
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Name: activate to sort column ascending"
-                                                        style="width: 52px;">Kode Akun</th>
+                                                        style="width: 52px;">Nama</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Office: activate to sort column ascending"
@@ -332,6 +337,10 @@
                                                         rowspan="1" colspan="1"
                                                         aria-label="Age: activate to sort column ascending"
                                                         style="width: 51px;">Posisi Saldo</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Keterangan</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="dataDebit">
@@ -340,6 +349,165 @@
                                                 <tr>
                                                     <td colspan="2" style="text-align: right;">Total</td>
                                                     <td colspan="2" id="totalDebit"></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h2>Pendapatan Lainnya</h2>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table class="table table-bordered dataTable" id="dataTable"
+                                                    width="100%" cellspacing="0" role="grid"
+                                                    aria-describedby="dataTable_info" style="width: 100%;">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Name: activate to sort column ascending"
+                                                                style="width: 52px;">Nama</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Office: activate to sort column ascending"
+                                                                style="width: 115px;">Waktu Transaksi</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Age: activate to sort column ascending"
+                                                                style="width: 51px;">Nominal</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Age: activate to sort column ascending"
+                                                                style="width: 51px;">Posisi Saldo</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Age: activate to sort column ascending"
+                                                                style="width: 51px;">Keterangan</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="dataPendapatan">
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td colspan="2" style="text-align: right;">Total</td>
+                                                            <td colspan="2" id="totalPendapatan"></td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2>Belanja</h2>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered dataTable" id="dataTable" width="100%"
+                                            cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Name: activate to sort column ascending"
+                                                        style="width: 52px;">Nama</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 115px;">Waktu Transaksi</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Nominal</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Posisi Saldo</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Keterangan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="dataBelanja">
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="2" style="text-align: right;">Total</td>
+                                                    <td colspan="2" id="totalBelanja"></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2>Operasional</h2>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered dataTable" id="dataTable" width="100%"
+                                            cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Name: activate to sort column ascending"
+                                                        style="width: 52px;">Nama</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 115px;">Waktu Transaksi</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Nominal</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Posisi Saldo</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Keterangan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="dataOperasional">
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="2" style="text-align: right;">Total</td>
+                                                    <td colspan="2" id="totalOperasional"></td>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -407,146 +575,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            function ubahFormatTanggal(tanggalAwal) {
-                let options = {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                };
-                return new Date(tanggalAwal).toLocaleDateString('id-ID', options);
+        function ubahFormatTanggal(tanggalAwal) {
+            let options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+
+            // Mengonversi string tanggal ISO 8601 menjadi objek Date
+            let date = new Date(tanggalAwal);
+
+            // Memeriksa apakah objek Date valid
+            if (isNaN(date)) {
+                console.error('Invalid date:', tanggalAwal);
+                return 'Invalid Date';
             }
 
-            function monthNameToNumber(monthName) {
-                const monthNames = {
-                    'Januari': 1,
-                    'Februari': 2,
-                    'Maret': 3,
-                    'April': 4,
-                    'Mei': 5,
-                    'Juni': 6,
-                    'Juli': 7,
-                    'Agustus': 8,
-                    'September': 9,
-                    'Oktober': 10,
-                    'November': 11,
-                    'Desember': 12
-                };
-
-                return monthNames[monthName];
-            }
-
-            document.querySelectorAll('.dropdown-item').forEach(item => {
-                item.addEventListener('click', function () {
-                    // Hapus kelas 'active' dari item yang sebelumnya aktif
-                    document.querySelector('.dropdown-item.active').classList.remove('active');
-
-                    // Tambahkan kelas 'active' pada item yang baru diklik
-                    this.classList.add('active');
-
-                    // Mendapatkan nilai terklik
-                    var selectedValue = this.getAttribute('value');
-                    console.log('Selected Value:', selectedValue);
-
-                    // Mengganti nama tombol berdasarkan nilai yang aktif
-                    document.getElementById('dropdownMenuButton').innerText = 'Waktu: ' +
-                        selectedValue;
-
-                    // Panggil ulang fungsi fetch dengan filter baru
-                    fetchDataAndDisplayTable(selectedValue);
-                });
-            });
-            fetchDataAndDisplayTable('Tahunan');
-            async function fetchDataAndDisplayTable(filterValue) {
-                try {
-                    const response = await fetch('/api/jurnalApis');
-                    if (!response.ok) {
-                        throw new Error('Failed to fetch data');
-                    }
-
-                    const data = await response.json();
-
-                    // Filter data based on the selected filterValue (month or 'Tahunan')
-                    const filteredData = filterValue === 'Tahunan' ? data : filterDataByMonth(data,
-                        filterValue);
-                    console.log(displayDataInTable1(filteredData));
-                } catch (error) {
-                    console.error('Error fetching or displaying data:', error);
-                    // Display a user-friendly error message on your webpage if needed
-                    // Example: document.getElementById('error-message').innerText = 'Failed to fetch or display data';
-                }
-            }
-
-            function displayDataInTable1(data) {
-                const tbodyDebit = document.getElementById('dataDebit');
-                const tbodyKredit = document.getElementById('dataKredit');
-
-                tbodyDebit.innerHTML = '';
-                tbodyKredit.innerHTML = '';
-
-                let totalDebit = 0;
-                let totalKredit = 0;
-
-                data.forEach(item => {
-                    console.log(item);
-                    var waktu = ubahFormatTanggal(item.waktu);
-                    const row = `<tr>
-            <td>${item["id_akun"]}</td>
-            <td>${waktu}</td>
-            <td>${formatCurrency(parseFloat(item.nominal))}</td>
-            <td>${item["posisi_saldo"]}</td>
-        </tr>`;
-
-                    if (item['posisi_saldo'] === 'Debit') {
-                        tbodyDebit.innerHTML += row;
-                        totalDebit += parseFloat(item.nominal);
-                    } else if (item['posisi_saldo'] === 'Kredit') {
-                        tbodyKredit.innerHTML += row;
-                        totalKredit += parseFloat(item.nominal);
-                    }
-                });
-
-                const totalCell1 = document.getElementById('totalKredit');
-                const totalCell2 = document.getElementById('totalDebit');
-                const totalValue = totalDebit - totalKredit;
-
-                // Display the total in the center-aligned cell
-                totalCell1.textContent = formatCurrency(totalKredit);
-                totalCell2.textContent = formatCurrency(totalDebit);
-                if (totalValue < 0) {
-                    totalCell.style.color = 'red';
-                }
-            }
-
-            function filterDataByMonth(data, filterValue) {
-                console.log('Filtering data. Filter value:', filterValue);
-
-                // Filter data based on the selected filterValue (month or 'Tahunan')
-                const filteredData = data.filter(item => {
-                    if (filterValue === 'Tahunan') {
-                        return true; // Display all data for 'Tahunan'
-                    }
-
-                    const itemDate = new Date(item.waktu);
-                    const itemMonth = itemDate.getMonth() + 1; // Adding 1 because months are zero-based
-                    const itemYear = itemDate.getFullYear();
-
-                    // Convert filterValue (month name) to a number using monthNameToNumber
-                    console.log('Filter yang didapatkan adalah: ', filterValue);
-                    const filterMonthNumber = monthNameToNumber(filterValue);
-                    console.log(filterMonthNumber);
-                    // Compare both year and month
-                    const result = itemMonth === filterMonthNumber && itemYear === parseInt(filterValue,
-                        10);
-                    console.log('Hasil dari return item month adalah', itemMonth);
-                    return result;
-                });
-
-                console.log('Filtered Data:', filteredData);
-                return filteredData;
-            }
-        });
+            return date.toLocaleDateString('id-ID', options);
+        }
 
         function generateAndPrintPDF() {
             const data1 = getDataFromTable('dataKredit', 'Kredit');
@@ -554,25 +601,85 @@
             generatePDF(data1, data2);
         }
 
-        function getDataFromTable(tableName, posisi_saldo) {
+        async function loadDataAndDisplay(tbodyId, totalId, idAkuns) {
+            try {
+                // Muat data dari API
+                const response = await fetch('/api/jurnalApis');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const data = await response.json();
+
+
+                console.log('Data dari API:', data);
+
+                // Cari elemen <tbody> berdasarkan ID
+                const tbody = document.getElementById(tbodyId);
+                if (!tbody) {
+                    throw new Error(`Element with ID ${tbodyId} not found`);
+                }
+
+                let totalNominal = 0;
+
+                // Tambahkan data ke tabel sesuai dengan id_akun dan hitung total nominal
+                data.forEach(item => {
+                    if (idAkuns.includes(item.id_akun)) {
+                        const row = `<tr>
+                    <td>${item.nama}</td>
+                    <td>${ubahFormatTanggal(item.waktu)}</td>
+                    <td>${formatCurrency(item.nominal)}</td>
+                    <td>${item.posisi_saldo}</td>
+                    <td>${item.ket ? item.ket : '-'}</td>
+                </tr>`;
+                        tbody.innerHTML += row;
+                        totalNominal += item.nominal;
+                    }
+                });
+
+                // Tampilkan total nominal
+                const totalElement = document.getElementById(totalId);
+                if (totalElement) {
+                    totalElement.innerText = formatCurrency(totalNominal);
+                } else {
+                    throw new Error(`Element with ID ${totalId} not found`);
+                }
+
+                console.log('Total nominal:', totalNominal);
+
+            } catch (error) {
+                console.error('Error loading or processing data:', error);
+            }
+        }
+
+        loadDataAndDisplay('dataKredit', 'totalKredit', ['3fa0b5c0-67e', '9ca10809-04e']);
+        loadDataAndDisplay('dataDebit', 'totalDebit', ['4c2af1e0-279', '74cd23ca-84b']);
+        loadDataAndDisplay('dataPendapatan', 'totalPendapatan', ['b792caaf-ac4']);
+        loadDataAndDisplay('dataOperasional', 'totalOperasional', ['aa517539-c52']);
+        loadDataAndDisplay('dataBelanja', 'totalBelanja', ['d6563284-bbc']);
+
+        function getDataFromTable(tbodyId) {
             const data = [];
-            const rows = document.getElementById(tableName).querySelectorAll('tr');
+            const rows = document.getElementById(tbodyId).querySelectorAll('tr');
 
-            rows.forEach(row => {
+            rows.forEach((row, rowIndex) => {
                 const columns = row.querySelectorAll('td');
-                const rowData = {};
+                if (columns.length > 0) { // Pastikan baris memiliki kolom
+                    const rowData = {
+                        "nama": columns[0].innerText.trim(),
+                        "tanggal": columns[1].innerText.trim(),
+                        "nominal": parseCurrencyValue(columns[2].innerText.trim()),
+                        "posisi_saldo": columns[3].innerText.trim(),
+                        "ket": columns[4].innerText.trim()
+                    };
 
-                rowData["id_akun"] = columns[0].innerText;
-                rowData["tanggal"] = columns[1].innerText;
-                rowData["nominal"] = parseCurrencyValue(columns[2].innerText);
-                rowData["posisi_saldo"] = columns[3].innerText;
-
-                // Hanya menambahkan data ke array jika posisi_saldo sesuai dengan parameter yang diberikan
-                if (rowData["posisi_saldo"] === posisi_saldo) {
+                    console.log(`Row ${rowIndex + 1}:`, rowData);
                     data.push(rowData);
+                } else {
+                    console.log(`Row ${rowIndex + 1}: No columns found`);
                 }
             });
 
+            console.log('Final data:', data);
             return data;
         }
 
@@ -592,12 +699,25 @@
             let totalNominal = 0; // Inisialisasi total nominal
 
             const tableBody = [
-                ['ID Akun', 'Waktu Transaksi', 'Nominal', 'Posisi Saldo'], // Header
+                ['ID Akun', 'Waktu Transaksi', 'Nominal', 'Posisi Saldo', 'Keterangan'], // Header
                 ...data.map(item => {
-                    const nominal = parseFloat(item.nominal); // Parse nominal to float
+                    const idAkun = item["nama"] || ''; // Periksa nilai id_akun
+                    const tanggal = item["tanggal"] || ''; // Periksa nilai tanggal
+                    const nominal = parseFloat(item["nominal"]) ||
+                    0; // Parse nominal to float, default value 0 if parsing fails
                     totalNominal += nominal; // Tambahkan nominal ke total
-                    return [item["id_akun"], item["tanggal"], formatCurrency(nominal), item["posisi_saldo"]];
-                })
+                    const posisiSaldo = item["posisi_saldo"] || ''; // Periksa nilai posisi_saldo
+                    const ket = item["ket"] || ''; // Periksa nilai ket
+
+                    // Periksa apakah semua nilai data telah diisi, jika tidak, tampilkan pesan kesalahan
+                    if (!idAkun || !tanggal || !posisiSaldo || !ket) {
+                        console.error("Invalid data:", item);
+                        return null; // Mengembalikan null jika data tidak lengkap
+                    }
+
+                    // Kembalikan array berisi nilai kolom tabel
+                    return [idAkun, tanggal, formatCurrency(nominal), posisiSaldo, ket];
+                }).filter(item => item !== null) // Filter nilai yang null (data tidak lengkap)
             ];
 
             // Tambahkan baris total ke tabel
@@ -605,18 +725,21 @@
                     text: 'Total',
                     colSpan: 2,
                     alignment: 'right'
-                }, // Total dengan colspan 2
+                },
                 '',
                 {
                     text: formatCurrency(totalNominal),
                     colSpan: 2,
                     alignment: 'center'
-                } // Total nominal dengan colspan 2
+                },
+                '',
+                '' // Total nominal dengan colspan 2
             ]);
+
             return {
                 table: {
                     headerRows: 1,
-                    widths: ['auto', 'auto', 'auto', 'auto'],
+                    widths: ['auto', 'auto', 'auto', 'auto', 'auto'],
                     body: tableBody // Gunakan tableBody yang sudah dibuat
                 },
                 margin: [0, 0, 0, 12]
@@ -624,13 +747,19 @@
         }
 
         function generatePDF() {
-            const dataDebit = getDataFromTable('dataDebit', 'Debit');
-            const dataKredit = getDataFromTable('dataKredit', 'Kredit');
+            const dataDebit = getDataFromTable('dataDebit');
+            const dataKredit = getDataFromTable('dataKredit');
+            const dataPendapatan = getDataFromTable('dataPendapatan');
+            const dataBelanja = getDataFromTable('dataBelanja');
+            const dataOperasional = getDataFromTable('dataOperasional');
+
             const totalDebitText = document.getElementById('totalDebit').textContent;
             const totalKreditText = document.getElementById('totalKredit').textContent;
+
             // Parse currency value from text
             const totalDebit = parseCurrencyValue(totalDebitText);
             const totalKredit = parseCurrencyValue(totalKreditText);
+
             console.log(totalDebit, totalKredit);
 
             const docDefinition = {
@@ -641,8 +770,8 @@
                     },
                     {
                         text: `Surat ini dikeluarkan resmi oleh bumdes desa dengan keterangan sebagai berikut:
-    nama    : Admin 
-    lokasi : Kantor Desa Umbele`,
+nama    : Admin 
+lokasi : Kantor Desa Umbele`,
                         style: 'praph1'
                     },
                     {
@@ -661,6 +790,30 @@
                         style: 'subheader'
                     },
                     generateTableContent(dataKredit),
+                    {
+                        text: '\n'
+                    },
+                    {
+                        text: 'Pendapatan Lainnya',
+                        style: 'subheader'
+                    },
+                    generateTableContent(dataPendapatan),
+                    {
+                        text: '\n'
+                    },
+                    {
+                        text: 'Belanja',
+                        style: 'subheader'
+                    },
+                    generateTableContent(dataBelanja),
+                    {
+                        text: '\n'
+                    },
+                    {
+                        text: 'Operasional',
+                        style: 'subheader'
+                    },
+                    generateTableContent(dataOperasional),
                     {
                         text: '\n\nDemikian surat laporan disampaikan dengan sangat akurat sesuai dengan arahan dari admin. Apabila ada kesalahan dalam penulisan maka kami pihak dibawah ini akan siap bertanggung jawab.\n\n\nHormat Kami,'
                     },

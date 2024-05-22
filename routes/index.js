@@ -24,5 +24,5 @@ renderHtml('/jurnalHarian', 'jurnal_harian.html');
 renderHtml('/jurnalUmum', 'jurnal_umum.html');
 renderHtml('/bukuBesar', 'jurnal_bukuBesar.html');
 renderHtml('/neracaSaldo', 'jurnal_neracaSaldo.html');
-
+renderHtml('/dataMasuk', 'data_masuk.html');
 module.exports = router;

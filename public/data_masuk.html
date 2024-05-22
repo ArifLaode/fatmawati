@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -30,96 +31,98 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
-          <!-- Sidebar - Brand -->
-          <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-              <div class="sidebar-brand-icon rotate-n-15">
-                  <i class="fas fa-laugh-wink"></i>
-              </div>
-              <div class="sidebar-brand-text mx-3">Dashbord BumDes</div>
-          </a>
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Dashbord BumDes</div>
+            </a>
 
-          <!-- Divider -->
-          <hr class="sidebar-divider my-0">
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-          <!-- Nav Item - Dashboard -->
-          <li class="nav-item active">
-              <a class="nav-link" href="index.html">
-                  <i class="fas fa-fw fa-tachometer-alt"></i>
-                  <span>Dashboard</span></a>
-          </li>
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
 
-          <!-- Divider -->
-          <hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-          <!-- Heading -->
-          <div class="sidebar-heading">Data Utama</div>
+            <!-- Heading -->
+            <div class="sidebar-heading">Data Utama</div>
 
-          <!-- Nav Item - Pages Collapse Menu -->
-          <li class="nav-item">
-              <a class="nav-link collapsed" href="#" aria-controls="collapseTwo" aria-expanded="false" data-target="#collapseTwo" data-toggle="collapse">
-                  <i class="fas fa-fw fa-file-alt"></i>
-                  <span>Data Akun</span>
-              </a>
-              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                  <div class="bg-white py-2 collapse-inner rounded">
-                      <h6 class="collapse-header">Data</h6>
-                      <a class="collapse-item" href="/kodeAkun">Kode Akun</a>
-                      <a class="collapse-item" href="#">Jenis Muatan</a>
-                  </div>
-              </div>
-          </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" aria-controls="collapseTwo" aria-expanded="false"
+                    data-target="#collapseTwo" data-toggle="collapse">
+                    <i class="fas fa-fw fa-file-alt"></i>
+                    <span>Data Akun</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Data</h6>
+                        <a class="collapse-item" href="/kodeAkun">Kode Akun</a>
+                    </div>
+                </div>
+            </li>
 
-          <!-- Nav Item - Utilities Collapse Menu -->
-          <li class="nav-item">
-              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
-                  <i class="fas fa-fw fa-exchange-alt"></i>
-                  <span>Data Transaksi</span>
-              </a>
-              <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                  <div class="bg-white py-2 collapse-inner rounded">
-                      <h6 class="collapse-header">Detail Transaksi</h6>
-                      <a class="collapse-item" href="/dataMasuk">Data Masuk</a>                        
-                      <a class="collapse-item" href="/dataSimpan">Simpanan</a>
-                      <a class="collapse-item" href="/dataPinjam">Pinjaman</a>
-                      <a class="collapse-item" href="/jurnalUmum">Jurnal Umum</a>
-                  </div>
-              </div>
-          </li>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="false" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-exchange-alt"></i>
+                    <span>Data Transaksi</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Detail Transaksi</h6>
+                        <a class="collapse-item" href="/dataMasuk">Tambah Data</a>
+                        <a class="collapse-item" href="/dataSimpanan">Simpanan</a>
+                        <a class="collapse-item" href="/dataPinjaman">Pinjaman</a>
+                        <a class="collapse-item" href="/jurnalUmum">Jurnal Umum</a>
+                    </div>
+                </div>
+            </li>
 
-          <!-- Divider -->
-          <hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-          <!-- Heading -->
-          <div class="sidebar-heading">Laporan</div>
+            <!-- Heading -->
+            <div class="sidebar-heading">Laporan</div>
 
-          <!-- Nav Item - Pages Collapse Menu -->
-          <li class="nav-item">
-              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                  <i class="fas fa-fw fa-folder"></i>
-                  <span>Laporan</span>
-              </a>
-              <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                  <div class="bg-white py-2 collapse-inner rounded">
-                      <h6 class="collapse-header">Data Laporan</h6>
-                      <a class="collapse-item" href="#">Jurnal Harian</a>
-                      <a class="collapse-item" href="#">Buku Besar</a>
-                      <a class="collapse-item" href="#">Neraca Saldo</a>
-                      <a class="collapse-item" href="#">Laba Rugi</a>                        
-                  </div>
-              </div>
-          </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="false" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Laporan</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Data Laporan</h6>
+                        <a class="collapse-item" href="/jurnalHarian">Jurnal Harian</a>
+                        <a class="collapse-item" href="/bukuBesar">Buku Besar</a>
+                        <a class="collapse-item" href="neracaSaldo">Neraca Saldo</a>
+                        <a class="collapse-item" href="labaRugi">Laba Rugi</a>
+                    </div>
+                </div>
+            </li>
 
-          <!-- Nav Item - Charts -->
-          
-          <!-- Sidebar Toggler (Sidebar) -->
-          <div class="text-center d-none d-md-inline">
-              <button class="rounded-circle border-0" id="sidebarToggle"></button>
-          </div>
+            <!-- Nav Item - Charts -->
 
-          <!-- Sidebar Message -->
-          
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
 
-      </ul>
+            <!-- Sidebar Message -->
+
+        </ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -137,21 +140,25 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -163,21 +170,23 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        
+
 
                         <!-- Nav Item - Messages -->
-                        
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -213,142 +222,207 @@
                 <!-- /.container-fluid -->
                 <div class="col-xxl">
                     <div class="card mb-4">
-                      <div class="card-header d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Tambah Data Masuk</h5>
-                      </div>
-                      <div class="card-body">
-                        <form>
-                          <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="nama">Nama</label>
-                            <div class="col-sm-10">
-                              <div class="input-group input-group-merge">
-                                <span id="nama2" class="input-group-text"><i class="fas fa-exchange-alt"></i></span>
-                                <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" aria-describedby="nama">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="kodeAkun">Kode Akun</label>
-                            <div class="col-sm-10">
-                              <div class="input-group input-group-merge">
-                                <span id="kodeAkun2" class="input-group-text"><i class="fas fa-file-alt"></i></span>
-                                <input type="text" class="form-control" id="kodeAkun" placeholder="Maukkan Kode Akun" aria-describedby="kodeAkun2">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="dateTrans">Waktu Transaksi</label>
-                            <div class="col-sm-10">
-                              <div class="input-group input-group-merge">
-                                <span id="dateTrans2" class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                                <input type="date" class="form-control" id="date" aria-describedby="dateTrans2">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="rek">rekening</label>
-                            <div class="col-sm-10">
-                              <div class="input-group input-group-merge">
-                                <span id="rek2" class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                <span class="input-group-text">
-                                    <select class="input-group-append" name="bank" id="bank">
-                                        <option value="BRI">BRI</option>
-                                        <option value="BNI">BNI</option>
-                                    </select>
-                                </span>
-                                <input type="text" class="form-control" id="rek" placeholder="Masukkan Nomor rekening" aria-describedby="rek2">
-                              </div>
-                            </div>
-                          </div>  
-                          <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="nominal">Nominal</label>
-                            <div class="col-sm-10">
-                              <div class="input-group input-group-merge">
-                                <span id="nominal2" class="input-group-text">Rp.</span>
-                                <input type="number" class="form-control" id="date" aria-describedby="nominal2">
-                              </div>
-                            </div>
-                          </div>                        
-                          <div class="row mb-3">
-                            <label class="col-sm-2 form-label" for="hp">Nomor Telepon</label>
-                            <div class="col-sm-10">
-                              <div class="input-group input-group-merge">
-                                <span id="hp2" class="input-group-text"><i class="fas fa-phone-alt"></i></span>
-                                <input type="text" id="hp" class="form-control phone-mask" placeholder="0812 1234 1234" aria-label="0812 1234 1234" aria-describedby="hp2">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row mb-3">
-                            <label class="col-sm-2 form-label" for="dekripsi">Deskripsi</label>
-                            <div class="col-sm-10">
-                              <div class="input-group input-group-merge">
-                                <span id="dekripsi2" class="input-group-text"><i class="fas fa-text-height"></i></span>
-                                <textarea id="dekripsi" class="form-control" placeholder="Masukkan Deskripsi Transakasi" aria-label="Masukkan Deskripsi Transakasi" aria-describedby="dekripsi2"></textarea>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row justify-content-end">
-                            <div class="col-sm-10">
-                              <button type="submit" class="btn btn-primary waves-effect waves-light">Kirim</button>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="mb-0">Tambah Data Masuk</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="addForm">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="jenis">Jenis</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                            <span id="kodeAkun2" class="input-group-text"><i
+                                                    class="fas fa-file"></i></span>
+                                            <select name="jenis" id="jenis" class="form-control">
+                                                <option selected disabled>Pilih Jenis Transakasi</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="dateTrans">Waktu Transaksi</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                            <span id="dateTrans2" class="input-group-text"><i
+                                                    class="fas fa-calendar"></i></span>
+                                            <input type="date" class="form-control" id="date"
+                                                aria-describedby="dateTrans2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="nominal">Nominal</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                            <span id="nominal2" class="input-group-text"><i
+                                                    class="fas fa-money"></i></span>
+                                            <input type="text" class="form-control" id="nominal"
+                                                aria-describedby="nominal2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 form-label" for="dekripsi">Deskripsi</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                            <span id="dekripsi2" class="input-group-text"><i
+                                                    class="fas fa-text-height"></i></span>
+                                            <input id="dekripsi" type="text" class="form-control"
+                                                placeholder="Masukkan Deskripsi Transakasi"
+                                                aria-label="Masukkan Deskripsi Transakasi"
+                                                aria-describedby="dekripsi2"></input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-end">
+                                    <div class="col-sm-10">
+                                        <button type="submit"
+                                            class="btn btn-primary waves-effect waves-light">Kirim</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Your Website 2020</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Page Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                // Mendapatkan elemen input date
+                const dateInput = document.getElementById('date');
+                // Mendapatkan tanggal hari ini dalam format YYYY-MM-DD
+                const today = new Date().toISOString().split('T')[0];
+                // Mengatur nilai default input date ke tanggal hari ini
+                dateInput.value = today;
+            });
+            document.getElementById('nominal').addEventListener('input', function (e) {
+                let value = this.value.replace(/[^0-9]/g, ''); // Menghapus karakter non-numerik
+                if (value) {
+                    value = parseInt(value, 10).toLocaleString('id-ID'); // Menambahkan titik setiap 3 digit
+                    this.value = `Rp. ${value}`;
+                } else {
+                    this.value = '';
+                }
+            });
+            fetch('/api/dataAkun')
+                .then(res => res.json())
+                .then(data => {
+                    const select = document.getElementById('jenis');
+                    data.forEach(item => {
+                        const {
+                            nama,
+                            posisi_saldo
+                        } = item;
 
+                        if (!item.nama.startsWith('koperasi ')) {
+                            const option = document.createElement('option');
+                            option.value = item.nama;
+                            option.text = item.nama;
+                            option.id = item.id_akun;
+                            select.append(option);
+                        }
+                    });
+                })
+
+
+            document.getElementById('addForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                let nominal = document.getElementById('nominal').value;
+                const selectedOption = document.getElementById('jenis').options[document.getElementById('jenis')
+                    .selectedIndex];
+                const id_akun = selectedOption.id;
+                nominal = nominal.replace(/[Rp.\s]/g, '');
+                const nominalNumber = parseInt(nominal, 10);
+                if (isNaN(nominalNumber)) {
+                    alert('Masukkan nilai nominal yang valid');
+                    return;
+                }
+
+                let data = {
+                    jenis: document.getElementById('jenis').value,
+                    id_akun: id_akun,
+                    waktu: document.getElementById('date').value,
+                    nominal: nominalNumber,
+                    ket: document.getElementById('dekripsi').value
+                };
+                console.log(data);
+
+                fetch('/api/newData', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(error => {
+                                throw new Error(error.message);
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('berhasil menambahkan data');
+                        window.alert('Data berhasil ditambahkan');
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        window.alert('Gagal menambahkan data: ' + error.message);
+                    });
+            });
+        </script>
 </body>
 
 </html>
