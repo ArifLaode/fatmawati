@@ -346,6 +346,29 @@ router.get('/jurnalApis', (req, res) => {
     });
 });
 
+router.post('/newData', (req, res) => {
+    const data = req.body;
+    const pushData = {
+        id_data: uuid.v4(),
+        nama: data.jenis,
+        id_akun: data.id_akun,
+        waktu: data.waktu,
+        nominal: data.nominal,
+        ket: data.ket
+    };
+
+    const sql = `INSERT INTO tb_koperasi SET ?`;
+    db.query(sql, [pushData], (err) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json({ message: 'Gagal menambahkan data' });
+        } else {
+            console.log('Data berhasil ditambahkan');
+            res.status(200).json({ message: 'Data berhasil ditambahkan' });
+        }
+    });
+});
+
 
 
 // Export the router

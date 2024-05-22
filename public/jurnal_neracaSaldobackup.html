@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Laba Rugi</title>
+    <title>Neraca Saldo</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -79,7 +79,6 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Detail Transaksi</h6>
-                        <a class="collapse-item" href="/dataMasuk">Tambah Data</a>
                         <a class="collapse-item" href="/dataSimpanan">Simpanan</a>
                         <a class="collapse-item" href="/dataPinjaman">Pinjaman</a>
                         <a class="collapse-item" href="/jurnalUmum">Jurnal Umum</a>
@@ -132,11 +131,10 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+
 
                     <!-- Topbar Search -->
 
@@ -213,21 +211,19 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Neraca Saldo</h1>
                     <div class="row">
-                        <div class="col-md-4">
-                            <!-- Page Heading -->
-                            <h1 class="h3 mb-4 text-gray-800">Laba Rugi</h1>
-                            <button class="btn btn btn-primary" onclick="generateAndPrintPDF()"
-                                title="Klik Untuk Melihat Laporan">
+                        <div class="col-6">
+                            <button class="btn btn btn-primary" id="printPDF" title="Klik Untuk Melihat Laporan">
                                 <span id="loading-spinner" style="display:none;"><i
                                         class="fas fa-spinner fa-spin"></i></span>
                                 <span><i class="fas fa-file-pdf"></i></span>
                             </button>
                         </div>
-                        <div class="col-md-4">
-                        </div>
-                        <div class="col-md-4">
-                            <b id="saldoValue"></b>
+                        <div class="col-6 float-right">
+                            <b>Nilai Saldo: <span><b id="saldoValue"></b></span></b>
                         </div>
                     </div>
                 </div>
@@ -239,58 +235,84 @@
                                     <div class="col-sm-12">
                                         <table class="table table-bordered dataTable" id="dataTable" width="100%"
                                             cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                                            style="width: 50%;">
+                                            style="width: 100%;">
                                             <thead>
                                                 <tr role="row">
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Name: activate to sort column ascending"
-                                                        style="width: 352px;">Nama</th>
-                                                    <th class="sorting sorting_desc" tabindex="0"
-                                                        aria-controls="dataTable" rowspan="1" colspan="1"
-                                                        aria-label="Position: activate to sort column ascending"
-                                                        aria-sort="descending" style="width: 249px;">Nilai
-                                                    </th>
+                                                        style="width: 52px;">Jenis</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Nama</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Jumlah</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Posisi Saldo</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="data">
+                                            <tbody id="tbodyData">
                                                 <tr>
-                                                    <td>
-                                                        <b>Pendapatan</b>
-                                                    </td>
-                                                    <td id="totalPendapatan"></td>
+                                                    <td rowspan="3">Pendapatan koperasi</td>
+                                                    <td>Jumlah Real</td>
+                                                    <td id="jumlahMasuk"></td>
+                                                    <td>Debit</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                        <b>Total Aset</b>
-                                                    </td>
-                                                    <td id="totalAset"></td>
+                                                    <td>Estimasi dari Bunga</td>
+                                                    <td id="totalBunga"></td>
+                                                    <td>Debit</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                        <b>Estimasi Pendapatan dari Pinjaman</b>
-                                                    </td>
-                                                    <td id="estimasiPendapatan"></td>
+                                                    <td>Modal Bumdes</td>
+                                                    <td id="modal"></td>
+                                                    <td>Debit</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                        <b>Pengeluaran</b>
-                                                    </td>
-                                                    <td id="totalPengeluaran"></td>
+                                                    <td colspan="2" style="text-align: end;"><b>Total </b></td>
+                                                    <td colspan="2" id="totalPendapatan"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                        <b>Estimasi Pengeluaran dari Simpanan</b>
-                                                    </td>
-                                                    <td id="totalPengeluaranEsti"></td>
+                                                    <td rowspan="2">Pengeluaran Koperasi</td>
+                                                    <td>Pinjaman</td>
+                                                    <td id="jumlahKeluar"></td>
+                                                    <td>Kredit</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                        <b>Laba</b>
-                                                    </td>
-                                                    <td id="total"></td>
+                                                    <td>Bunga Simpanan</td>
+                                                    <td id="bungaSimpan"></td>
+                                                    <td>Kredit</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align: end;"><b>Total</b></td>
+                                                    <td colspan="2" id="totalPengeluaran"></td>
                                                 </tr>
                                             </tbody>
+                                            <tfoot>
+                                                <!-- <tr>
+                                                    <td colspan="2" style="text-align: right;"><b>Total Debit: </b>
+                                                    </td>
+                                                    <td colspan="2" id="totalPendapatan" style="text-align: center;">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style=" text-align: right;"><b>Total Kredit:
+                                                        </b></td>
+                                                    <td colspan="2" id="totalPengeluaran" style="text-align: center;">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align: right;"><b>Total Nilai: </b>
+                                                    </td>
+                                                    <td colspan="2" id="total" style="text-align: center;">
+                                                    </td>
+                                                </tr> -->
+                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
@@ -368,34 +390,38 @@
                 }
 
                 const data = await response.json();
-                console.log(data);
                 displayDataInTable(data);
+                document.getElementById('printPDF').addEventListener('click', () => {
+                    displayTablePDF(data);
+                });
             } catch (error) {
                 console.error('Error fetching or displaying data:', error);
-                // Tampilkan pesan kesalahan yang ramah pengguna pada halaman web Anda
-                // Contoh: document.getElementById('error-message').innerText = 'Gagal mengambil atau menampilkan data';
             }
         }
-        let saldoValue = 0;
-        const nominalValue = parseInt(data.nominal, 10);
-        let dataPendapatan = 0;
-        let totalPendapatan = 0;
-        let totalPengeluaran = 0;
-        let dataPengeluaran = 0;
-        let dataBunga = 0;
-        let bungaSimpan = 0;
-        let dataPinjam = 0;
-        let bunga = 0;
-        var modal = 10000000;
-        let totalOperasional = 0;
-        let Pendapaatan = 0;
-        let PendapatanEsti = 0;
-        let Pengeluaran = 0;
-        let PengeluaranEsti = 0;
-        let saldoValue1 = 0;
+
+        function ubahFormatTanggal(tanggalAwal) {
+            let options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+            return new Date(tanggalAwal).toLocaleDateString('id-ID', options);
+        }
 
         function displayDataInTable(data) {
-
+            console.log(data);
+            const nominalValue = parseInt(data.nominal, 10);
+            let dataPendapatan = 0;
+            let totalPendapatan = 0;
+            let totalPengeluaran = 0;
+            let dataPengeluaran = 0;
+            let dataBunga = 0;
+            let bungaSimpan = 0;
+            let dataPinjam = 0;
+            let bunga = 0;
+            var modal = 10000000;
+            $('#modal').text(formatCurrency(modal))
             data.forEach(item => {
                 if (item.nama === 'koperasi simpan' || item.nama === 'koperasi bayar' || item.nama ===
                     'pemasukkan') {
@@ -406,6 +432,7 @@
                     dataPengeluaran += item.nominal;
                     $('#jumlahKeluar').text(formatCurrency(dataPengeluaran));
                 }
+
             });
             data.forEach(item => {
                 if (item.nama === 'koperasi pinjam') {
@@ -434,37 +461,80 @@
                     bungaSimpan += (bunga / 100) * item.nominal;
                     $('#bungaSimpan').text(formatCurrency(bungaSimpan));
                 }
-                totalPendapatan = dataPendapatan + dataBunga +
-                    modal;
+                totalPendapatan = dataPendapatan + dataBunga + modal;
                 totalPengeluaran = bungaSimpan + dataPengeluaran;
                 console.log(totalPendapatan);
                 $('#totalPendapatan').text(formatCurrency(totalPendapatan));
                 $('#totalPengeluaran').text(formatCurrency(totalPengeluaran));
             });
-
             let totalAssets = 0;
+            let rowCount = 0;
+            let totalOperasional = 0;
+            let operasionalCount = 0;
+            const $tbody = $('#tbodyData');
+
+            // Iterate through data to calculate totalAssets and rowCount
             data.forEach(item => {
                 if (item.nama === 'aset') {
                     totalAssets += item.nominal;
+                    rowCount++;
                 } else if (item.nama === 'operasional') {
                     totalOperasional += item.nominal;
+                    operasionalCount++;
                 }
             });
 
-            saldoValue = (dataPendapatan + modal + totalAssets) - (dataPengeluaran + totalOperasional);
-            saldoValue1 = (dataPendapatan + totalAssets) - (dataPengeluaran + totalOperasional);
-            Pendapatan = dataPendapatan + modal + totalAssets;
-            console.log('Pendapaatan adalah: ', Pendapatan);
-            PendapatanEsti = dataPendapatan + modal + totalAssets + dataBunga;
-            Pengeluaran = dataPengeluaran + totalOperasional;
-            PengeluaranEsti = bungaSimpan;
-            $('#totalPendapatan').text(formatCurrency(Pendapatan));
-            $('#totalAset').text(formatCurrency(totalAssets));
-            $('#estimasiPendapatan').text(formatCurrency(dataBunga));
-            $('#totalPengeluraran').text(formatCurrency(Pengeluaran));
-            $('#totalPengeluaranEsti').text(formatCurrency(PengeluaranEsti));
-            $('#total').text(formatCurrency(saldoValue1));
+            // Create first row with rowspan based on rowCount
+            const $firstRow = $('<tr>');
+            console.log(rowCount);
+            $firstRow.append($('<td rowspan="' + (rowCount + 1) + '">Aset</td>'));
+
+            // Append first row to tbodye
+            $tbody.append($firstRow);
+
+            // Iterate through data again to create rows for aset items
+            data.forEach(item => {
+                if (item.nama === 'aset') {
+                    const $row = $('<tr>');
+                    const $namaCell = $('<td>').text(item.ket);
+                    const $jumlahCell = $('<td>').text(formatCurrency(item.nominal));
+                    const $posCell = $('<td>').text('-');
+
+                    $row.append($namaCell, $jumlahCell, $posCell);
+                    $tbody.append($row);
+                }
+            });
+
+            // Create row for total assets
+            const $totalRow = $('<tr>');
+            $totalRow.append('<td colspan="2" style="text-align: end;"><b>Total</b></td>', '<td colspan="2">' +
+                formatCurrency(totalAssets) + '</td>');
+            $tbody.append($totalRow);
+
+            const $firstRowOperasional = $('<tr>');
+            $firstRowOperasional.append($('<td rowspan="' + (operasionalCount + 1) + '">Operasional</td>'));
+            $tbody.append($firstRowOperasional);
+
+            // Iterate through data again to create rows for operasional items
+            data.forEach(item => {
+                if (item.nama === 'operasional') {
+                    const $row = $('<tr>');
+                    const $namaCell = $('<td>').text(item.ket);
+                    const $jumlahCell = $('<td>').text(formatCurrency(item.nominal));
+                    const $posCell = $('<td>').text('Kredit');
+
+                    $row.append($namaCell, $jumlahCell, $posCell);
+                    $tbody.append($row);
+                }
+            });
+
+            // Create row for total operasional
+            const $totalRowOperasional = $('<tr>');
+            $totalRowOperasional.append('<td style="text-align: end;" colspan="2"><b>Total</b></td>',
+                '<td colspan="2">' + formatCurrency(totalOperasional) + '</td>');
+            $tbody.append($totalRowOperasional);
         }
+
 
         function formatCurrency(amount) {
             return new Intl.NumberFormat('id-ID', {
@@ -473,114 +543,260 @@
             }).format(amount);
         }
 
-        function generateAndPrintPDF(data) {
+        function displayTablePDF(data) {
+            const nominalValue = parseInt(data.nominal, 10);
+            let dataPendapatan = 0;
+            let totalPendapatan = 0;
+            let totalPengeluaran = 0;
+            let dataPengeluaran = 0;
+            let dataBunga = 0;
+            let bungaSimpan = 0;
+            let modal = 10000000;
+
+            let totalAssets = 0;
+            let totalOperasional = 0;
+
+            const tableBody = [];
+
+            // Menghitung pendapatan, pengeluaran, dan bunga
+            data.forEach(item => {
+                if (item.nama === 'koperasi simpan' || item.nama === 'koperasi bayar' || item.nama ===
+                    'pemasukkan') {
+                    dataPendapatan += item.nominal;
+                }
+                if (item.nama === 'koperasi pinjam') {
+                    dataPengeluaran += item.nominal;
+                    const bunga = calculateBunga(item.jangka);
+                    dataBunga += (bunga / 100) * item.nominal;
+                }
+                if (item.nama === 'koperasi simpan') {
+                    const bunga = calculateBunga(item.jangka);
+                    bungaSimpan += (bunga / 100) * item.nominal;
+                }
+            });
+
+            totalPendapatan = dataPendapatan + dataBunga + modal;
+            totalPengeluaran = bungaSimpan + dataPengeluaran;
+
+            // Menambahkan data aset dan operasional ke tableBody
+            addAssetsToTable(data, tableBody, totalAssets);
+            addOperationalToTable(data, tableBody, totalOperasional);
+            let asetData = [];
+            let opeData = [];
+            const rowSpan1 = data.filter(item => item.nama === 'aset').length;
+            const rowspan2 = data.filter(item => item.nama === 'operasional').length;
+            console.log('panjang baris operasional adalah:', rowspan2);
+            console.log('panjang baris adalah', rowSpan1);
             const docDefinition = {
-                pageSize: 'A4',
                 content: [{
-                        text: `Jurnal Laba Rugi Tahun 2024`,
+                        text: 'Laporan Keuangan',
                         style: 'header'
-                    },
-                    {
-                        text: `Surat ini dikeluarkan resmi oleh bumdes desa dengan keterangan sebagai berikut:
-                nama    : Admin 
-                lokasi  : Kantor Desa Umbele`,
-                        style: 'praph1'
                     },
                     {
                         table: {
                             headerRows: 1,
-                            widths: ['auto', 'auto'],
+                            widths: ['auto', 'auto', 'auto', 'auto'],
                             body: [
-                                ['Nama', 'Nilai'],
-                                ['Pendapatan', formatCurrency(Pendapatan)],
-                                ['Total Aset', formatCurrency(totalPengeluaran)],
-                                ['Estimasi Pendapatan dari Pinjaman', formatCurrency(dataBunga)],
-                                ['Pengeluaran', formatCurrency(Pengeluaran)],
-                                ['Estimasi Pengeluaran dari Simpanan', formatCurrency(bungaSimpan)],
-                                ['Laba', formatCurrency(saldoValue1)]
+                                [
+                                    'Jenis',
+                                    'Nama',
+                                    'Jumlah',
+                                    'Posisi Saldo'
+                                ],
+                                [{
+                                        text: 'Pendapatan Koperasi',
+                                        rowSpan: 3,
+                                    },
+                                    {
+                                        text: 'Jumlah Real'
+                                    },
+                                    {
+                                        text: formatCurrency(dataPendapatan)
+                                    },
+                                    {
+                                        text: 'Debit'
+                                    }
+                                ],
+                                [{},
+                                    {
+                                        text: 'Estimasi dari Bunga'
+                                    },
+                                    {
+                                        text: formatCurrency(dataBunga)
+                                    },
+                                    {
+                                        text: 'Debit'
+                                    }
+                                ],
+                                [{},
+                                    {
+                                        text: 'Modal BumDes'
+                                    },
+                                    {
+                                        text: formatCurrency(modal)
+                                    },
+                                    {
+                                        text: 'Debit'
+                                    }
+                                ],
+                                [{
+                                        text: 'Total',
+                                        colSpan: 2,
+                                        bold: true,
+                                        alignment: 'right'
+                                    },
+                                    {},
+                                    {
+                                        text: formatCurrency(totalPendapatan),
+                                        colSpan: 2
+                                    },
+                                    {}
+                                ],
+                                [{
+                                        text: 'Pengeluaran Koperasi',
+                                        rowSpan: 2
+                                    },
+                                    {
+                                        text: 'Pinjaman'
+                                    },
+                                    {
+                                        text: formatCurrency(dataPengeluaran)
+                                    },
+                                    {
+                                        text: 'Kredit'
+                                    }
+                                ],
+                                [{},
+                                    {
+                                        text: 'Bunga Simpanan'
+                                    },
+                                    {
+                                        text: formatCurrency(dataBunga)
+                                    },
+                                    {
+                                        text: 'Kredit'
+                                    }
+                                ],
+                                [{
+                                        text: 'Total',
+                                        colSpan: 2,
+                                        bold: true,
+                                        alignment: 'right'
+                                    },
+                                    {},
+                                    {
+                                        text: formatCurrency(totalPengeluaran),
+                                        colSpan: 2
+                                    },
+                                    {}
+                                ],
+                                ...tableBody
                             ]
                         }
-                    },
-                    {
-                        text: '\n'
-                    },
-                    {
-                        text: 'Demikian surat laporan disampaikan dengan sangat akurat sesuai dengan arahan dari admin. Apabila ada kesalahan dalam penulisan maka kami pihak dibawah ini akan siap bertanggung jawab.'
-                    },
-                    {
-                        text: '\n'
-                    },
-                    {
-                        text: '\n'
-                    },
-                    {
-                        text: 'Hormat Kami,'
-                    },
-                    {
-                        text: '\n'
-                    },
-                    {
-                        text: '\n'
-                    },
-                    {
-                        text: '\n'
-                    },
-                    {
-                        text: '\n'
-                    },
-                    {
-                        text: '\n'
-                    },
-                    {
-                        text: '\n'
-                    },
-                    {
-                        text: '\n'
-                    },
-                    {
-                        text: '\n'
-                    },
-                    {
-                        columns: [{
-                                width: 'auto',
-                                text: [
-                                    '(.............)',
-                                    '\n',
-                                    {
-                                        text: 'Kepala Desa',
-                                        bold: true
-                                    },
-                                ]
-                            },
-                            {
-                                alignment: 'right',
-                                text: [
-                                    '(..............)',
-                                    '\n',
-                                    {
-                                        text: 'Admin',
-                                        bold: true
-                                    }
-                                ]
-                            }
-                        ]
                     }
                 ],
                 styles: {
                     header: {
                         fontSize: 18,
                         bold: true,
-                        alignment: 'center',
-                        margin: [0, 0, 0, 12]
-                    },
-                    praph1: {
-                        margin: [0, 0, 0, 12]
+                        margin: [0, 0, 0, 10]
                     }
                 }
             };
 
-            // Generate and open the PDF
             pdfMake.createPdf(docDefinition).open();
+        }
+
+        function calculateBunga(jangka) {
+            if (jangka < 6) {
+                return 3;
+            } else if (jangka <= 12) {
+                return 4;
+            } else if (jangka <= 24) {
+                return 5;
+            } else {
+                return 6;
+            }
+        }
+
+        function addAssetsToTable(data, tableBody, totalAssets) {
+            const assetsData = data.filter(item => item.nama === 'aset');
+
+            if (assetsData.length > 0) {
+                const firstOperationalData = assetsData[0];
+
+                tableBody.push([{
+                        text: 'Aset',
+                        rowSpan: assetsData.length
+                    },
+                    firstOperationalData.ket,
+                    formatCurrency(firstOperationalData.nominal),
+                    'Kredit'
+                ]);
+
+                for (let i = 1; i < assetsData.length; i++) {
+                    const item = assetsData[i];
+                    tableBody.push(['',
+                        item.ket, formatCurrency(item.nominal), '-'
+                    ]);
+                    totalAssets += item.nominal;
+                }
+            } else {
+                console.log('Tidak ada data operasional yang ditemukan');
+            }
+
+            // Tambahkan baris Total Aset
+            tableBody.push([{
+                    text: 'Total',
+                    colSpan: 2,
+                    alignment: 'right'
+                },
+                {},
+                {
+                    text: formatCurrency(totalAssets)
+                },
+                {}
+            ]);
+        }
+
+        function addOperationalToTable(data, tableBody, totalOperasional) {
+            const operationalData = data.filter(item => item.nama === 'operasional');
+
+            if (operationalData.length > 0) {
+                const firstOperationalData = operationalData[0];
+
+                tableBody.push([{
+                        text: 'Operasional',
+                        rowSpan: operationalData.length
+                    },
+                    firstOperationalData.ket,
+                    formatCurrency(firstOperationalData.nominal),
+                    'Kredit'
+                ]);
+
+                for (let i = 1; i < operationalData.length; i++) {
+                    const item = operationalData[i];
+                    tableBody.push(['', item.ket, formatCurrency(item.nominal), 'Kredit']);
+                    totalOperasional += item.nominal;
+                }
+            } else {
+                console.log('Tidak ada data operasional yang ditemukan');
+            }
+
+            // Tambahkan baris Total Operasional
+            tableBody.push([{
+                    text: 'Total',
+                    colSpan: 2,
+                    alignment: 'right',
+                    bold: true
+                },
+                {},
+                {
+                    text: formatCurrency(totalOperasional),
+                    colSpan: 2
+                },
+                {}
+            ]);
         }
 
         function parseCurrencyValue(currencyString) {
@@ -588,7 +804,6 @@
             return parseFloat(currencyString.replace(/[^\d,]/g, '').replace(',', '.'));
         }
     </script>
-
 </body>
 
 </html>

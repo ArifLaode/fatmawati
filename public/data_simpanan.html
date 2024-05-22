@@ -355,13 +355,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="NIK">NIK</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                        <span id="NIK2" class="input-group-text"><i class="fas fa-file-alt"></i></span>
-                                        <input type="text" class="form-control" id="NIK" placeholder="Maukkan NIK"
-                                            aria-describedby="NIK2">
+                            <div class="container mt-5">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="NIK">NIK</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                            <span id="NIK2" class="input-group-text"><i
+                                                    class="fas fa-file-alt"></i></span>
+                                            <input type="text" class="form-control" id="NIK" placeholder="Masukkan NIK"
+                                                aria-describedby="NIKHelp" maxlength="16" oninput="validateNIK()"
+                                                pattern="\d{16}">
+                                        </div>
+                                        <small id="NIKHelp" class="form-text text-muted">NIK harus terdiri dari 16 digit
+                                            angka.</small>
                                     </div>
                                 </div>
                             </div>
@@ -441,6 +447,35 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     <script>
+        function validateNIK() {
+            const nikInput = document.getElementById('NIK');
+            const nikValue = nikInput.value;
+            const isValid = /^\d{16}$/.test(nikValue);
+
+            if (!isValid && nikValue.length === 16) {
+                nikInput.classList.add('error');
+            } else {
+                nikInput.classList.remove('error');
+            }
+        }
+
+        document.getElementById('NIK').addEventListener('input', function (event) {
+            const value = event.target.value.replace(/\D/g, '');
+            event.target.value = value;
+
+            if (value.length > 16) {
+                event.target.value = value.slice(0, 16);
+            }
+        });
+
+        document.getElementById('NIK').addEventListener('blur', function (event) {
+            if (event.target.value.length !== 16) {
+                event.target.classList.add('error');
+            } else {
+                event.target.classList.remove('error');
+            }
+        });
+
         function formatCurrency(amount) {
             return new Intl.NumberFormat('id-ID', {
                 style: 'currency',
@@ -488,7 +523,7 @@
                         // Menampilkan pesan sukses pada elemen dengan id 'success'
                         $('#success').text(
                             data
-                            ); // Jika pesan yang diterima dari server adalah 'Data baru berhasil ditambahkan'
+                        ); // Jika pesan yang diterima dari server adalah 'Data baru berhasil ditambahkan'
                         location.reload(); // Reload halaman setelah data berhasil dikirim
                     },
                     error: (error) => {
