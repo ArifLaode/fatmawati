@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Neraca Saldo</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Dashbord BumDes</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/dashboard">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">Data Utama</div>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="false" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-exchange-alt"></i>
+                    <span>Data Transaksi</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Detail Transaksi</h6>
+                        <a class="collapse-item" href="/dataSimpanan">Simpanan</a>
+                        <a class="collapse-item" href="/dataPinjaman">Pinjaman</a>
+                        <a class="collapse-item" href="/jurnalUmum">Jurnal Umum</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">Laporan</div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="false" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Laporan</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Data Laporan</h6>
+                        <a class="collapse-item" href="/jurnalHarian">Jurnal Harian</a>
+                        <a class="collapse-item" href="/bukuBesar">Buku Besar</a>
+                        <a class="collapse-item" href="neracaSaldo">Neraca Saldo</a>
+                        <a class="collapse-item" href="labaRugi">Laba Rugi</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Charts -->
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Sidebar Message -->
+
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+
+                    <!-- Topbar Search -->
+
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Alerts -->
+
+
+                        <!-- Nav Item - Messages -->
+
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Neraca Saldo</h1>
+                    <div class="row">
+                        <div class="col-6">
+                            <button class="btn btn btn-primary" id="printPDF" title="Klik Untuk Melihat Laporan">
+                                <span id="loading-spinner" style="display:none;"><i
+                                        class="fas fa-spinner fa-spin"></i></span>
+                                <span><i class="fas fa-file-pdf"></i></span>
+                            </button>
+                        </div>
+                        <div class="col-6 float-right">
+                            <b>Nilai Saldo: <span><b id="saldoValue"></b></span></b>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered dataTable" id="dataTable" width="100%"
+                                            cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Name: activate to sort column ascending"
+                                                        style="width: 52px;">Jenis</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Nama</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Jumlah</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending"
+                                                        style="width: 51px;">Posisi Saldo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbodyData">
+                                                <tr>
+                                                    <td rowspan="3">Pendapatan koperasi</td>
+                                                    <td>Jumlah Real</td>
+                                                    <td id="jumlahMasuk"></td>
+                                                    <td>Debit</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Estimasi dari Bunga</td>
+                                                    <td id="totalBunga"></td>
+                                                    <td>Debit</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Modal Bumdes</td>
+                                                    <td id="modal"></td>
+                                                    <td>Debit</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align: end;"><b>Total </b></td>
+                                                    <td colspan="2" id="totalPendapatan"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td rowspan="2">Pengeluaran Koperasi</td>
+                                                    <td>Pinjaman</td>
+                                                    <td id="jumlahKeluar"></td>
+                                                    <td>Kredit</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Bunga Simpanan</td>
+                                                    <td id="bungaSimpan"></td>
+                                                    <td>Kredit</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align: end;"><b>Total</b></td>
+                                                    <td colspan="2" id="totalPengeluaran"></td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <!-- <tr>
+                                                    <td colspan="2" style="text-align: right;"><b>Total Debit: </b>
+                                                    </td>
+                                                    <td colspan="2" id="totalPendapatan" style="text-align: center;">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style=" text-align: right;"><b>Total Kredit:
+                                                        </b></td>
+                                                    <td colspan="2" id="totalPengeluaran" style="text-align: center;">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align: right;"><b>Total Nilai: </b>
+                                                    </td>
+                                                    <td colspan="2" id="total" style="text-align: center;">
+                                                    </td>
+                                                </tr> -->
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="/">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchDataAndDisplayTable();
+        });
+
+        async function fetchDataAndDisplayTable() {
+            try {
+                const response = await fetch('/api/jurnalApis');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+
+                const data = await response.json();
+                displayDataInTable(data);
+                document.getElementById('printPDF').addEventListener('click', () => {
+                    displayTablePDF(data);
+                });
+            } catch (error) {
+                console.error('Error fetching or displaying data:', error);
+            }
+        }
+
+        function ubahFormatTanggal(tanggalAwal) {
+            let options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+            return new Date(tanggalAwal).toLocaleDateString('id-ID', options);
+        }
+
+        function displayDataInTable(data) {
+            console.log(data);
+            const nominalValue = parseInt(data.nominal, 10);
+            let dataPendapatan = 0;
+            let totalPendapatan = 0;
+            let totalPengeluaran = 0;
+            let dataPengeluaran = 0;
+            let dataBunga = 0;
+            let bungaSimpan = 0;
+            let dataPinjam = 0;
+            let bunga = 0;
+            var modal = 10000000;
+            $('#modal').text(formatCurrency(modal))
+            data.forEach(item => {
+                if (item.nama === 'koperasi simpan' || item.nama === 'koperasi bayar' || item.nama ===
+                    'pemasukkan') {
+                    dataPendapatan += item.nominal;
+                    $('#jumlahMasuk').text(formatCurrency(dataPendapatan));
+                }
+                if (item.nama === 'koperasi pinjam') {
+                    dataPengeluaran += item.nominal;
+                    $('#jumlahKeluar').text(formatCurrency(dataPengeluaran));
+                }
+
+            });
+            data.forEach(item => {
+                if (item.nama === 'koperasi pinjam') {
+                    if (item.jangka < 6) {
+                        bunga = 3;
+                    } else if (item.jangka <= 12) {
+                        bunga = 4;
+                    } else if (item.jangka <= 24) {
+                        bunga = 5;
+                    } else {
+                        bunga = 6;
+                    }
+                    dataBunga += (bunga / 100) * item.nominal;
+                    $('#totalBunga').text(formatCurrency(dataBunga));
+                }
+                if (item.nama === 'koperasi simpan') {
+                    if (item.jangka < 6) {
+                        bunga = 3;
+                    } else if (item.jangka <= 12) {
+                        bunga = 4;
+                    } else if (item.jangka <= 24) {
+                        bunga = 5;
+                    } else {
+                        bunga = 6;
+                    }
+                    bungaSimpan += (bunga / 100) * item.nominal;
+                    $('#bungaSimpan').text(formatCurrency(bungaSimpan));
+                }
+                totalPendapatan = dataPendapatan + dataBunga + modal;
+                totalPengeluaran = bungaSimpan + dataPengeluaran;
+                console.log(totalPendapatan);
+                $('#totalPendapatan').text(formatCurrency(totalPendapatan));
+                $('#totalPengeluaran').text(formatCurrency(totalPengeluaran));
+            });
+            let totalAssets = 0;
+            let rowCount = 0;
+            let totalOperasional = 0;
+            let operasionalCount = 0;
+            const $tbody = $('#tbodyData');
+
+            // Iterate through data to calculate totalAssets and rowCount
+            data.forEach(item => {
+                if (item.nama === 'aset') {
+                    totalAssets += item.nominal;
+                    rowCount++;
+                } else if (item.nama === 'operasional') {
+                    totalOperasional += item.nominal;
+                    operasionalCount++;
+                }
+            });
+
+            // Create first row with rowspan based on rowCount
+            const $firstRow = $('<tr>');
+            console.log(rowCount);
+            $firstRow.append($('<td rowspan="' + (rowCount + 1) + '">Aset</td>'));
+
+            // Append first row to tbodye
+            $tbody.append($firstRow);
+
+            // Iterate through data again to create rows for aset items
+            data.forEach(item => {
+                if (item.nama === 'aset') {
+                    const $row = $('<tr>');
+                    const $namaCell = $('<td>').text(item.ket);
+                    const $jumlahCell = $('<td>').text(formatCurrency(item.nominal));
+                    const $posCell = $('<td>').text('-');
+
+                    $row.append($namaCell, $jumlahCell, $posCell);
+                    $tbody.append($row);
+                }
+            });
+
+            // Create row for total assets
+            const $totalRow = $('<tr>');
+            $totalRow.append('<td colspan="2" style="text-align: end;"><b>Total</b></td>', '<td colspan="2">' +
+                formatCurrency(totalAssets) + '</td>');
+            $tbody.append($totalRow);
+
+            const $firstRowOperasional = $('<tr>');
+            $firstRowOperasional.append($('<td rowspan="' + (operasionalCount + 1) + '">Operasional</td>'));
+            $tbody.append($firstRowOperasional);
+
+            // Iterate through data again to create rows for operasional items
+            data.forEach(item => {
+                if (item.nama === 'operasional') {
+                    const $row = $('<tr>');
+                    const $namaCell = $('<td>').text(item.ket);
+                    const $jumlahCell = $('<td>').text(formatCurrency(item.nominal));
+                    const $posCell = $('<td>').text('Kredit');
+
+                    $row.append($namaCell, $jumlahCell, $posCell);
+                    $tbody.append($row);
+                }
+            });
+
+            // Create row for total operasional
+            const $totalRowOperasional = $('<tr>');
+            $totalRowOperasional.append('<td style="text-align: end;" colspan="2"><b>Total</b></td>',
+                '<td colspan="2">' + formatCurrency(totalOperasional) + '</td>');
+            $tbody.append($totalRowOperasional);
+        }
+
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(amount);
+        }
+
+        function displayTablePDF(data) {
+            const nominalValue = parseInt(data.nominal, 10);
+            let dataPendapatan = 0;
+            let totalPendapatan = 0;
+            let totalPengeluaran = 0;
+            let dataPengeluaran = 0;
+            let dataBunga = 0;
+            let bungaSimpan = 0;
+            let modal = 10000000;
+
+            let totalAssets = 0;
+            let totalOperasional = 0;
+
+            const tableBody = [];
+
+            // Menghitung pendapatan, pengeluaran, dan bunga
+            data.forEach(item => {
+                if (item.nama === 'koperasi simpan' || item.nama === 'koperasi bayar' || item.nama ===
+                    'pemasukkan') {
+                    dataPendapatan += item.nominal;
+                }
+                if (item.nama === 'koperasi pinjam') {
+                    dataPengeluaran += item.nominal;
+                    const bunga = calculateBunga(item.jangka);
+                    dataBunga += (bunga / 100) * item.nominal;
+                }
+                if (item.nama === 'koperasi simpan') {
+                    const bunga = calculateBunga(item.jangka);
+                    bungaSimpan += (bunga / 100) * item.nominal;
+                }
+            });
+
+            totalPendapatan = dataPendapatan + dataBunga + modal;
+            totalPengeluaran = bungaSimpan + dataPengeluaran;
+
+            // Menambahkan data aset dan operasional ke tableBody
+            addAssetsToTable(data, tableBody, totalAssets);
+            addOperationalToTable(data, tableBody, totalOperasional);
+            let asetData = [];
+            let opeData = [];
+            const rowSpan1 = data.filter(item => item.nama === 'aset').length;
+            const rowspan2 = data.filter(item => item.nama === 'operasional').length;
+            console.log('panjang baris operasional adalah:', rowspan2);
+            console.log('panjang baris adalah', rowSpan1);
+            const docDefinition = {
+                content: [{
+                        text: 'Laporan Keuangan',
+                        style: 'header'
+                    },
+                    {
+                        table: {
+                            headerRows: 1,
+                            widths: ['auto', 'auto', 'auto', 'auto'],
+                            body: [
+                                [
+                                    'Jenis',
+                                    'Nama',
+                                    'Jumlah',
+                                    'Posisi Saldo'
+                                ],
+                                [{
+                                        text: 'Pendapatan Koperasi',
+                                        rowSpan: 3,
+                                    },
+                                    {
+                                        text: 'Jumlah Real'
+                                    },
+                                    {
+                                        text: formatCurrency(dataPendapatan)
+                                    },
+                                    {
+                                        text: 'Debit'
+                                    }
+                                ],
+                                [{},
+                                    {
+                                        text: 'Estimasi dari Bunga'
+                                    },
+                                    {
+                                        text: formatCurrency(dataBunga)
+                                    },
+                                    {
+                                        text: 'Debit'
+                                    }
+                                ],
+                                [{},
+                                    {
+                                        text: 'Modal BumDes'
+                                    },
+                                    {
+                                        text: formatCurrency(modal)
+                                    },
+                                    {
+                                        text: 'Debit'
+                                    }
+                                ],
+                                [{
+                                        text: 'Total',
+                                        colSpan: 2,
+                                        bold: true,
+                                        alignment: 'right'
+                                    },
+                                    {},
+                                    {
+                                        text: formatCurrency(totalPendapatan),
+                                        colSpan: 2
+                                    },
+                                    {}
+                                ],
+                                [{
+                                        text: 'Pengeluaran Koperasi',
+                                        rowSpan: 2
+                                    },
+                                    {
+                                        text: 'Pinjaman'
+                                    },
+                                    {
+                                        text: formatCurrency(dataPengeluaran)
+                                    },
+                                    {
+                                        text: 'Kredit'
+                                    }
+                                ],
+                                [{},
+                                    {
+                                        text: 'Bunga Simpanan'
+                                    },
+                                    {
+                                        text: formatCurrency(dataBunga)
+                                    },
+                                    {
+                                        text: 'Kredit'
+                                    }
+                                ],
+                                [{
+                                        text: 'Total',
+                                        colSpan: 2,
+                                        bold: true,
+                                        alignment: 'right'
+                                    },
+                                    {},
+                                    {
+                                        text: formatCurrency(totalPengeluaran),
+                                        colSpan: 2
+                                    },
+                                    {}
+                                ],
+                                ...tableBody
+                            ]
+                        }
+                    }
+                ],
+                styles: {
+                    header: {
+                        fontSize: 18,
+                        bold: true,
+                        margin: [0, 0, 0, 10]
+                    }
+                }
+            };
+
+            pdfMake.createPdf(docDefinition).open();
+        }
+
+        function calculateBunga(jangka) {
+            if (jangka < 6) {
+                return 3;
+            } else if (jangka <= 12) {
+                return 4;
+            } else if (jangka <= 24) {
+                return 5;
+            } else {
+                return 6;
+            }
+        }
+
+        function addAssetsToTable(data, tableBody, totalAssets) {
+            const assetsData = data.filter(item => item.nama === 'aset');
+
+            if (assetsData.length > 0) {
+                const firstOperationalData = assetsData[0];
+
+                tableBody.push([{
+                        text: 'Aset',
+                        rowSpan: assetsData.length
+                    },
+                    firstOperationalData.ket,
+                    formatCurrency(firstOperationalData.nominal),
+                    'Kredit'
+                ]);
+
+                for (let i = 1; i < assetsData.length; i++) {
+                    const item = assetsData[i];
+                    tableBody.push(['',
+                        item.ket, formatCurrency(item.nominal), '-'
+                    ]);
+                    totalAssets += item.nominal;
+                }
+            } else {
+                console.log('Tidak ada data operasional yang ditemukan');
+            }
+
+            // Tambahkan baris Total Aset
+            tableBody.push([{
+                    text: 'Total',
+                    colSpan: 2,
+                    alignment: 'right'
+                },
+                {},
+                {
+                    text: formatCurrency(totalAssets)
+                },
+                {}
+            ]);
+        }
+
+        function addOperationalToTable(data, tableBody, totalOperasional) {
+            const operationalData = data.filter(item => item.nama === 'operasional');
+
+            if (operationalData.length > 0) {
+                const firstOperationalData = operationalData[0];
+
+                tableBody.push([{
+                        text: 'Operasional',
+                        rowSpan: operationalData.length
+                    },
+                    firstOperationalData.ket,
+                    formatCurrency(firstOperationalData.nominal),
+                    'Kredit'
+                ]);
+
+                for (let i = 1; i < operationalData.length; i++) {
+                    const item = operationalData[i];
+                    tableBody.push(['', item.ket, formatCurrency(item.nominal), 'Kredit']);
+                    totalOperasional += item.nominal;
+                }
+            } else {
+                console.log('Tidak ada data operasional yang ditemukan');
+            }
+
+            // Tambahkan baris Total Operasional
+            tableBody.push([{
+                    text: 'Total',
+                    colSpan: 2,
+                    alignment: 'right',
+                    bold: true
+                },
+                {},
+                {
+                    text: formatCurrency(totalOperasional),
+                    colSpan: 2
+                },
+                {}
+            ]);
+        }
+
+        function parseCurrencyValue(currencyString) {
+            // Remove non-numeric characters, replace comma with dot, and parse as float
+            return parseFloat(currencyString.replace(/[^\d,]/g, '').replace(',', '.'));
+        }
+    </script>
+</body>
+
+</html>

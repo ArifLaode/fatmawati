@@ -507,6 +507,17 @@
                 const nominal = $('#nominal').val();
                 const jangka = $('#jangka').val();
                 const hp = $('#hp').val();
+                let bunga;
+                if (jangka < 6) {
+                    bunga = 3;
+                } else if (jangka <= 12) {
+                    bunga = 4;
+                } else if (jangka <= 24) {
+                    bunga = 5;
+                } else {
+                    bunga = 6;
+                }
+                const cicilan = hitungCicilan(nominal, bunga, jangka);
 
                 var data = {
                     id_akun: '9ca10809-04e',
@@ -515,7 +526,9 @@
                     waktu: date,
                     nominal: nominal,
                     jangka: jangka,
-                    no_hp: hp
+                    no_hp: hp,
+                    bunga: bunga,
+                    cicilan: cicilan,
                 };
 
                 var jsonData = JSON.stringify(data);
@@ -559,9 +572,7 @@
                         const tbody = $('#data');
                         $.each(data, function (index, item) {
                             const row = $('<tr>');
-                            const col = $('<td>');
 
-                            // Calculate bunga and totalCicilan
                             let bunga;
                             let nominal = item.nominal;
 
@@ -575,91 +586,46 @@
                                 bunga = 6;
                             }
 
-                            var totalCicilan = hitungCicilan(nominal, bunga, item.jangka);
-                            var cicil = formatRupiah(totalCicilan);
-                            item.cicilan = totalCicilan;
-                            var idCell = $('<td>').text(item.id_akun);
-                            var namaCell = $('<td>').text(item.nama);
-                            var nomCell = $('<td>').text(formatRupiah(item.nominal));
-                            var cicilCell = $('<td>').text(cicil);
-                            var tempoCell = $('<td>').text(item.jangka);
-                            const pembayaranCell = $('<td>');
+                            const totalCicilan = hitungCicilan(nominal, bunga, item.jangka);
+                            const cicil = formatRupiah(totalCicilan);
+
+                            const idCell = $('<td>').text(item.id_akun);
+                            const namaCell = $('<td>').text(item.nama);
+                            const nomCell = $('<td>').text(formatRupiah(item.nominal));
+                            const cicilCell = $('<td>').text(cicil);
+                            const tempoCell = $('<td>').text(item.jangka);
+                            const pembayaranCell = $('<td>').text(Math.max(item.terbayar - item.jangka, 0));
+                            const tanggalCell = $('<td>').text(formattedDate(item.waktu));
 
                             const actionsCell = $('<td>');
-
-                            fetch('./data/data_pinjaman.json')
-                                .then(response => response.json())
-                                .then(jsonData => {
-                                    // Menangani data yang diterima
-                                    // Pastikan jsonData merupakan objek dan bukan array
-                                    if (typeof jsonData === 'object' && jsonData !==
-                                        null) {
-                                        // Iterasi melalui setiap item dalam objek jsonData
-                                        let recordFound =
-                                            false; // Flag untuk menandai apakah record ditemukan
-                                        for (const key in jsonData) {
-                                            if (jsonData.hasOwnProperty(key)) {
-                                                const point = jsonData[key];
-                                                // Mencocokkan id_data
-                                                if (point.id_data === item.id_data) {
-                                                    console.log(
-                                                        `Data yang cocok adalah ${item.id_data}`
-                                                    );
-                                                    if (point.record !== null) {
-                                                        pembayaranCell.text(point
-                                                            .record);
-                                                        item.record = point.record;
-                                                        recordFound =
-                                                            true; // Record ditemukan
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                        // Jika record tidak ditemukan, set item.record menjadi item.jangka
-                                        if (!recordFound) {
-                                            item.record = item.jangka - 1;
-                                            pembayaranCell.text('-');
-                                        }
-                                    } else {
-                                        console.error('Format data tidak sesuai');
-                                    }
-                                })
-                                .catch(error => {
-                                    console.error('Gagal mengambil data:', error);
-                                });
-
-                            var tanggalCell = $('<td>').text(formattedDate(
-                                item.waktu));
-
-                            const editButton = $('<button>').addClass(
-                                    'btn btn-group btn-success')
+                            const editButton = $('<button>')
+                                .addClass('btn btn-group btn-success')
                                 .html('<i class="fas fa-check"></i>')
                                 .attr('title', 'Tandai telah dibayar')
                                 .click(function () {
                                     handleEdit(item);
                                 });
 
-                            const downloadButton = $('<button>').addClass(
-                                    'btn btn-group btn-primary')
+                            const downloadButton = $('<button>')
+                                .addClass('btn btn-group btn-primary')
                                 .html('<i class="fas fa-download"></i>')
                                 .attr('title', 'Cetak Faktur Tagihan')
                                 .click(function () {
                                     handleDownload(item);
                                 });
 
-                            actionsCell.append(downloadButton);
-                            actionsCell.append(editButton);
-                            col.append(actionsCell);
-
-                            tbody.append(idCell, namaCell, nomCell, cicilCell, tanggalCell,
-                                tempoCell, pembayaranCell, col, row);
+                            actionsCell.append(downloadButton, editButton);
+                            row.append(idCell, namaCell, nomCell, cicilCell, tanggalCell, tempoCell, pembayaranCell, actionsCell);
+                            tbody.append(row);
                         });
                     },
                     error: function (error) {
                         console.error('Error fetching data:', error);
+                        alert('Gagal memuat data. Silakan coba lagi.');
                     }
                 });
+            });
+
 
                 // Replace these functions with your own implementation
                 function handleEdit(item) {
@@ -672,13 +638,12 @@
                         console.log('Edit:', item);
                         const data = {
                             id_data: item.id_data,
+                            ID: item.ID,
                             nama: item.nama,
-                            NIK: item.NIK,
                             waktu: formatDate,
                             nominal: item.cicilan,
                             jangka: item.jangka,
-                            no_hp: item.no_hp,
-                            record: item.record
+                            terbayar: item.terbayar
                         }
                         var jsonData = JSON.stringify(data);
                         console.log('data yang akan dikirimkan adalah: ', jsonData);
@@ -794,10 +759,6 @@
                         window.open(pdfUrl, '_blank');
                     });
                 }
-
-
-                // Fungsi untuk memformat nilai menjadi mata uang rupiah
-            });
 
             function faktur() {
                 function formatTanggal(tanggal) {

@@ -115,17 +115,41 @@ function editData(url, tb_name, idColumnName) {
 }
 
 router.get('/dataPinjam', (req, res) => {
-    var sql = `SELECT * FROM tb_koperasi WHERE id_akun = ?`;
-    var id_akun = '9ca10809-04e'
+    var sql = `
+        SELECT 
+            tb_koperasi.id_akun, 
+            tb_koperasi.nama, 
+            tb_koperasi.id_data, 
+            tb_koperasi.nominal, 
+            tb_simpanpinjam.cicilan, 
+            tb_koperasi.waktu, 
+            tb_koperasi.jangka, 
+            tb_simpanpinjam.terbayar
+        FROM tb_koperasi 
+        INNER JOIN tb_simpanpinjam 
+        ON tb_koperasi.id_data = tb_simpanpinjam.id_data 
+        WHERE tb_koperasi.id_akun = ?`;
+    
+    var id_akun = '9ca10809-04e'; // Ganti dengan ID lengkap
     db.query(sql, [id_akun], (err, data) => {
         if (err) {
-            console.log(`Tidak bisa mengambil data di tabel dengan error: ${err}`);
-            return res.status(500).send('Gagal mengambil data.');
-        } else {
-            return res.send(data);
+            console.error('SQL Error:', err);
+            return res.status(500).json({ error: 'Gagal mengambil data dari database.' });
         }
+        const dataSend = data.map(item => ({
+            id_akun: item.id_akun,
+            id_data: item.id_data,
+            nama: item.nama,
+            nominal: item.nominal,
+            cicilan: item.cicilan,
+            waktu: item.waktu,
+            jangka: item.jangka,
+            terbayar: item.terbayar,
+        }));
+        return res.json(dataSend);
     });
 });
+
 
 router.get('/dataSimpanan', (req, res) => {
     var sql = `SELECT * FROM tb_koperasi WHERE id_akun = 74cd23ca-84b`;
@@ -147,99 +171,73 @@ deleteData('/deleteAkun', 'tb_akun', 'id_akun');
 
 
 router.post('/dataKoperasi', (req, res) => {
-    var tb_name = 'tb_koperasi';
+    const tb_name = 'tb_koperasi';
+    const idData = uuid.v4();
     const newData = req.body;
+
+    // Data untuk tb_koperasi
     const data = {
         id_akun: '9ca10809-04e',
-        id_data: uuid.v4(),
+        id_data: idData,
         nama: newData.nama,
         NIK: newData.NIK,
         waktu: newData.waktu,
         nominal: newData.nominal,
         jangka: newData.jangka,
-        no_hp: newData.no_hp
-    }
+        no_hp: newData.no_hp,
+    };
 
+    // Data untuk tb_simpanpinjam
+    const data2 = {
+        ID: uuid.v4(),
+        id_data: idData,
+        nama: newData.nama,
+        nominal: newData.nominal,
+        tempo: newData.jangka,
+        bunga: newData.bunga,
+        cicilan: newData.cicilan,
+        terbayar: 0,
+    };
+
+    // Query pertama: Insert ke tb_koperasi
     const sql = `INSERT INTO ${tb_name} SET ?`;
+    const sql2 = `INSERT INTO tb_simpanpinjam SET ?`;
 
     db.query(sql, data, (err, result) => {
         if (err) {
-            console.log(`Gagal menambahkan data ke tabel ${tb_name} dengan error: ${err}`);
-            return res.status(500).send('Gagal menambahkan data.');
-        } else {
-            console.log(`Data berhasil ditambahkan ke tabel ${tb_name}`);
-            return res.status(201).send('Data berhasil ditambahkan.');
+            console.error(`Gagal menambahkan data ke tabel ${tb_name} dengan error: ${err}`);
+            return res.status(500).send('Gagal menambahkan data ke tb_koperasi.');
         }
+
+        console.log(`Data berhasil ditambahkan ke tabel ${tb_name}`);
+
+        // Query kedua: Insert ke tb_simpanpinjam (hanya jika query pertama berhasil)
+        db.query(sql2, data2, (err, result) => {
+            if (err) {
+                console.error(`Gagal menambahkan data ke tabel simpanpinjam dengan error: ${err}`);
+                return res.status(500).send('Gagal menambahkan data ke tb_simpanpinjam.');
+            }
+
+            console.log('Data berhasil ditambahkan ke tabel simpanpinjam');
+            return res.status(201).send('Data berhasil ditambahkan ke kedua tabel.');
+        });
     });
 });
 
 router.post('/dataCicil', (req, res) => {
-    const filePath = "./public/data/data_pinjaman.json";
-    const requestData = req.body;
-    const dataJson = {
-        id_data: requestData.id_data,
-        jangka: requestData.jangka,
-        record: requestData.record
-    }
-    console.log(requestData);
-
-    fs.readFile(filePath, 'utf-8', (err, fileData) => {
-        if (err) {
-            console.error(`Gagal membaca file ${filePath}: ${err}`);
-            res.status(500).send('Internal Server Error');
-            return;
-        }
-
-        // Konversi data yang sudah ada menjadi array
-        let dataArray = JSON.parse(fileData);
-
-        // Cari index data dengan id_data yang sama
-        const existingIndex = dataArray.findIndex(item => item.id_data === dataJson.id_data);
-
-        if (existingIndex !== -1) {
-            // Jika data dengan id_data yang sama sudah ada, lakukan rewrite pada record
-            dataArray[existingIndex].record = dataArray[existingIndex].record - 1;
-        } else {
-            dataArray.push(dataJson);
-        }
-
-        // Konversi array kembali ke format JSON
-        const jsonData = JSON.stringify(dataArray, null, 2);
-
-        // Tulis kembali ke file
-        fs.writeFile(filePath, jsonData, 'utf-8', (err) => {
+        const data = req.body;
+        console.log(data);
+        const update = data.terbayar + 1;
+        const sql = 'update tb_simpanpinjam set ? where ID = ?';
+        db.query(sql, update, data.ID), (err, result) => {
             if (err) {
-                console.error(`Gagal menulis ke file ${filePath}: ${err}`);
-                return res.status(500).send('Internal Server Error');
-                return;
-            }
-            console.log(`Data baru berhasil ditambahkan ke dalam file ${filePath}`);
-            return res.status(200).send('Data baru berhasil ditambahkan');
-        });
-    });
-
-    // Menggunakan nilai dataJson.record untuk sqlData
-    var sql = `INSERT INTO tb_koperasi SET ?`;
-    var sqlData = {
-        id_data: uuid.v4(),
-        id_akun: '4c2af1e0-279',
-        nama: requestData.nama,
-        NIK: requestData.NIK,
-        waktu: requestData.waktu,
-        nominal: requestData.nominal,
-        jangka: '-',
-        no_hp: requestData.no_hp,
-        record: dataJson.record // Menggunakan nilai record dari dataJson
-    }
-
-    db.query(sql, [sqlData], (err) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('Data berhasil dikirim ke SQL');
+                console.log('terjadi kesalahan dalam update pinjaman');
+                return res.status(500).send('terjadi kesalahan server');
+            } 
+            return res.status(201).send('data berhasil dikirmkan');
         }
     });
-});
+
 
 router.get('/dataSimpan', (req, res) => {
     var sql = 'SELECT * FROM tb_koperasi WHERE id_akun = ?';

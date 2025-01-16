@@ -1,0 +1,23 @@
+[
+  {
+    "kodeAkun;namaAkun;posisi;akunBank": "211;transportasi;debit;335512"
+  },
+  {
+    "kodeAkun;namaAkun;posisi;akunBank": "426;penyewaan;debit;45361"
+  },
+  {
+    "kodeAkun;namaAkun;posisi;akunBank": "767;pemeliharaan;kredit;3456654"
+  },
+  {
+    "kodeAkun;namaAkun;posisi;akunBank": "371;koperasi simpan;kredit;76543456"
+  },
+  {
+    "kodeAkun;namaAkun;posisi;akunBank": "358;koperasi pinjam;kredit;34567875"
+  },
+  {
+    "kodeAkun;namaAkun;posisi;akunBank": "409;koperasi klaim;kredit;76545621"
+  },
+  {
+    "kodeAkun;namaAkun;posisi;akunBank": "203;koperasi bayar;debit;34567541"
+  }
+]

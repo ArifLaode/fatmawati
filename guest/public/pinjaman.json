@@ -1,0 +1,92 @@
+[
+  {
+    "kode akun": 358,
+    "nama": "RONAL RENGO",
+    "nominal": 3000000,
+    "cicilan": 250000,
+    "tempo": 12,
+    "pembayaran": 8,
+    "sisa": 4
+  },
+  {
+    "kode akun": 358,
+    "nama": "BISNAWATY",
+    "nominal": 5000000,
+    "cicilan": 208333,
+    "tempo": 24,
+    "pembayaran": 10,
+    "sisa": 14
+  },
+  {
+    "kode akun": 358,
+    "nama": "HIJRIANTY",
+    "nominal": 1700000,
+    "cicilan": 283333,
+    "tempo": 6,
+    "pembayaran": 3,
+    "sisa": 3
+  },
+  {
+    "kode akun": 358,
+    "nama": "ASFAR",
+    "nominal": 2000000,
+    "cicilan": 250000,
+    "tempo": 8,
+    "pembayaran": 2,
+    "sisa": 6
+  },
+  {
+    "kode akun": 358,
+    "nama": "NURNANINGSIH",
+    "nominal": 1000000,
+    "cicilan": 333333,
+    "tempo": 3,
+    "pembayaran": 1,
+    "sisa": 2
+  },
+  {
+    "kode akun": 358,
+    "nama": "AGUSTINUS",
+    "nominal": 1200000,
+    "cicilan": 200000,
+    "tempo": 6,
+    "pembayaran": 4,
+    "sisa": 2
+  },
+  {
+    "kode akun": 358,
+    "nama": "ALDI LENGKE",
+    "nominal": 2300000,
+    "cicilan": 191667,
+    "tempo": 12,
+    "pembayaran": 6,
+    "sisa": 6
+  },
+  {
+    "kode akun": 358,
+    "nama": "WULANDARY",
+    "nominal": 1600000,
+    "cicilan": 177778,
+    "tempo": 9,
+    "pembayaran": 8,
+    "sisa": 1
+  },
+  {
+    "kode akun": 358,
+    "nama": "DERI YANTI",
+    "nominal": 700000,
+    "cicilan": 233333,
+    "tempo": 3,
+    "pembayaran": 2,
+    "sisa": 1
+  },
+  {
+    "kode akun": 358,
+    "nama": "ISNAWATY",
+    "nominal": 2100000,
+    "cicilan": 175000,
+    "tempo": 12,
+    "pembayaran": 3,
+    "sisa": 9
+  }
+]

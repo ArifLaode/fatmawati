@@ -1,0 +1,298 @@
+[
+  {
+    "kode_akun": "371",
+    "id_transaksi": "aaec-be4f-ab-ed-ebffd",
+    "nama": "koperasi simpan",
+    "tanggal": "02-09-2023",
+    "nominal": "5000000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "426",
+    "id_transaksi": "cffd-cf4d-bb-cb-daace",
+    "nama": "penyewaan",
+    "tanggal": "14-09-2023",
+    "nominal": "400000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "426",
+    "id_transaksi": "efbf-ea4c-af-ce-dcdbd",
+    "nama": "penyewaan",
+    "tanggal": "14-09-2023",
+    "nominal": "400000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "358",
+    "id_transaksi": "ebea-ac4f-ae-ee-eedcf",
+    "nama": "koperasi pinjam",
+    "tanggal": "04-09-2023",
+    "nominal": "1700000",
+    "posisi_saldo": "kredit"
+  },
+  {
+    "kode_akun": "767",
+    "id_transaksi": "eacc-bb4b-ab-da-befba",
+    "nama": "perawatan",
+    "tanggal": "20-09-2023",
+    "nominal": "200000",
+    "posisi_saldo": "kredit"
+  },
+  {
+    "kode_akun": "371",
+    "id_transaksi": "dffd-dd4f-bf-ea-ebcae",
+    "nama": "koperasi simpan",
+    "tanggal": "20-09-2023",
+    "nominal": "10000000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "426",
+    "id_transaksi": "adff-cb4f-ae-fe-dacbb",
+    "nama": "penyewaan",
+    "tanggal": "20-09-2023",
+    "nominal": "200000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "426",
+    "id_transaksi": "adec-fc4c-ba-ca-dfdab",
+    "nama": "penyewaan",
+    "tanggal": "03-10-2023",
+    "nominal": "400000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "358",
+    "id_transaksi": "aabe-af4c-ad-fa-fbfcd",
+    "nama": "koperasi pinjam",
+    "tanggal": "12-10-2023",
+    "nominal": "210000",
+    "posisi_saldo": "kredit"
+  },
+  {
+    "kode_akun": "358",
+    "id_transaksi": "fadd-eb4a-ab-ef-bcccb",
+    "nama": "koperasi  pinjam",
+    "tanggal": "16-10-2023",
+    "nominal": "1000000",
+    "posisi_saldo": "kredit"
+  },
+  {
+    "kode_akun": "426",
+    "id_transaksi": "edba-be4a-ba-fd-debaa",
+    "nama": "penyewaan",
+    "tanggal": "18-10-2023",
+    "nominal": "200000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "767",
+    "id_transaksi": "fbcb-ee4a-bb-df-ecefb",
+    "nama": "perawatan",
+    "tanggal": "20-10-2023",
+    "nominal": "300000",
+    "posisi_saldo": "kredit"
+  },
+  {
+    "kode_akun": "767",
+    "id_transaksi": "dfab-de4a-bd-cc-aedfa",
+    "nama": "pengadaan atk",
+    "tanggal": "20-10-2023",
+    "nominal": "100000",
+    "posisi_saldo": "kredit"
+  },
+  {
+    "kode_akun": "426",
+    "id_transaksi": "bcca-ff4b-ab-ff-faacb",
+    "nama": "penyewaan",
+    "tanggal": "21-10-2023",
+    "nominal": "150000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "358",
+    "id_transaksi": "feff-fb4e-bd-ad-affeb",
+    "nama": "koperasi pinjam",
+    "tanggal": "22-10-2023",
+    "nominal": "1000000",
+    "posisi_saldo": "kredit"
+  },
+  {
+    "kode_akun": "203",
+    "id_transaksi": "acba-cc4a-ba-fa-edcfd",
+    "nama": "pembayaran koperasi",
+    "tanggal": "04-10-2023",
+    "nominal": "250000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "203",
+    "id_transaksi": "adad-ef4e-af-fa-dddba",
+    "nama": "pembayaran koperasi",
+    "tanggal": "04-11-203",
+    "nominal": "208333",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "426",
+    "id_transaksi": "faab-fc4b-ad-fd-edadb",
+    "nama": "penyewaan",
+    "tanggal": "04-11-2023",
+    "nominal": "2500000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "358",
+    "id_transaksi": "caeb-aa4b-ab-ef-acbfa",
+    "nama": "koperasi pinjam",
+    "tanggal": "06-11-2023",
+    "nominal": "1000000",
+    "posisi_saldo": "kredit"
+  },
+  {
+    "kode_akun": "203",
+    "id_transaksi": "dcea-ba4a-af-fd-eecee",
+    "nama": "pembayaran koperasi",
+    "tanggal": "12-11-2023",
+    "nominal": "250000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "426",
+    "id_transaksi": "cdfc-fe4d-be-eb-cadde",
+    "nama": "penyewaan",
+    "tanggal": "13-11-2023",
+    "nominal": "150000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "767",
+    "id_transaksi": "bdca-ce4d-be-ff-ecfdf",
+    "nama": "perawatan",
+    "tanggal": "16-11-2023",
+    "nominal": "300000",
+    "posisi_saldo": "kredit"
+  },
+  {
+    "kode_akun": "426",
+    "id_transaksi": "eebb-cd4f-af-ca-ddcec",
+    "nama": "penyewaan",
+    "tanggal": "16-11-2023",
+    "nominal": "400000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "203",
+    "id_transaksi": "ecee-ed4c-ab-de-edeaa",
+    "nama": "pembayaran koperasi",
+    "tanggal": "16-11-2023",
+    "nominal": "250000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "371",
+    "id_transaksi": "cdeb-ff4e-be-ec-fcbed",
+    "nama": "koperasi simpan",
+    "tanggal": "16-11-2023",
+    "nominal": "5000000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "203",
+    "id_transaksi": "deef-bc4d-aa-dd-abebe",
+    "nama": "pembayaran koperasi",
+    "tanggal": "22-11-2023",
+    "nominal": "333333",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "409",
+    "id_transaksi": "ceaa-bd4c-bf-db-eefab",
+    "nama": "koperasi klaim",
+    "tanggal": "02-12-2023",
+    "nominal": "5300000",
+    "posisi_saldo": "kredit"
+  },
+  {
+    "kode_akun": "426",
+    "id_transaksi": "cfed-ca4b-af-ee-aaccf",
+    "nama": "penyewaan",
+    "tanggal": "02-12-2023",
+    "nominal": "300000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "203",
+    "id_transaksi": "bdca-ab4b-ad-cc-abfba",
+    "nama": "pembayaran koperasi",
+    "tanggal": "04-12-2023",
+    "nominal": "250000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "203",
+    "id_transaksi": "bcfd-be4c-af-fc-afbba",
+    "nama": "pembayaran koperasi",
+    "tanggal": "12-12-2023",
+    "nominal": "308333",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "426",
+    "id_transaksi": "dfbc-fa4c-bb-ee-adecb",
+    "nama": "penyewaan",
+    "tanggal": "12-12-2023",
+    "nominal": "100000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "426",
+    "id_transaksi": "fabb-ff4f-be-da-bfdee",
+    "nama": "penyewaan",
+    "tanggal": "12-12-2023",
+    "nominal": "200000",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "767",
+    "id_transaksi": "eedc-ac4b-bc-ab-faabb",
+    "nama": "perawatan",
+    "tanggal": "12-12-2023",
+    "nominal": "200000",
+    "posisi_saldo": "kredit"
+  },
+  {
+    "kode_akun": "358",
+    "id_transaksi": "bbcf-df4d-bb-bf-fcbdd",
+    "nama": "koperasi pinjam",
+    "tanggal": "12-12-2023",
+    "nominal": "2000000",
+    "posisi_saldo": "kredit"
+  },
+  {
+    "kode_akun": "203",
+    "id_transaksi": "ccaa-be4e-ac-de-cafcd",
+    "nama": "pembayaran koperasi",
+    "tanggal": "16-12-2023",
+    "nominal": "333333",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "203",
+    "id_transaksi": "ffaa-cd4f-ac-df-afced",
+    "nama": "pembayaran koperasi",
+    "tanggal": "22-12-2023",
+    "nominal": "333333",
+    "posisi_saldo": "debit"
+  },
+  {
+    "kode_akun": "426",
+    "id_transaksi": "ebee-bf4f-ac-ad-febab",
+    "nama": "penyewaan",
+    "tanggal": "22-12-2023",
+    "nominal": "2000000",
+    "posisi_saldo": "debit"
+  }
+]
