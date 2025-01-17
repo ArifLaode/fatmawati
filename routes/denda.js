@@ -34,9 +34,9 @@ function calculateBill(data) {
     let penalty = 0;
     if (daysLate > 0) {
         if (daysLate === 1) {
-            penalty = 0.05 * nominal;
+            penalty = 0.005 * nominal;
         } else if (daysLate > 1) {
-            penalty = 0.05 * nominal + 25000;
+            penalty = 0.005 * nominal + 25000;
         }
     }
 

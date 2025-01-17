@@ -388,7 +388,7 @@
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
                                         <span id="nominal2" class="input-group-text">Rp.</span>
-                                        <input type="number" class="form-control" id="nominal"
+                                        <input type="text" class="form-control" id="nominal"
                                             aria-describedby="nominal2">
                                     </div>
                                 </div>
@@ -447,6 +447,15 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     <script>
+        document.getElementById('nominal').addEventListener('input', function (e) {
+                let value = this.value.replace(/[^0-9]/g, ''); // Menghapus karakter non-numerik
+                if (value) {
+                    value = parseInt(value, 10).toLocaleString('id-ID'); // Menambahkan titik setiap 3 digit
+                    this.value = `${value}`;
+                } else {
+                    this.value = '';
+                }
+            });
         function validateNIK() {
             const nikInput = document.getElementById('NIK');
             const nikValue = nikInput.value;
