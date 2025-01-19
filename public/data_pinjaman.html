@@ -514,7 +514,8 @@
                 const nama = $('#nama').val();
                 const NIK = $('#NIK').val();
                 const date = $('#date').val();
-                const nominal = $('#nominal').val();
+                let nominal = $('#nominal').val();
+                nominal = parseInt(nominal.replace(/\./g, ''), 10) || 0;
                 const jangka = $('#jangka').val();
                 const hp = $('#hp').val();
                 let bunga;
@@ -540,6 +541,8 @@
                     bunga: bunga,
                     cicilan: cicilan,
                 };
+
+                console.log(data);
 
                 var jsonData = JSON.stringify(data);
 
