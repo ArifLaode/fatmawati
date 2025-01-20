@@ -278,50 +278,15 @@ router.post('/klaimSimpanan', (req, res) => {
     var sql = `INSERT INTO tb_koperasi SET ?`;
     var bodyReq = req.body;
     var data = {
-        id_data: uuid.v4(),
+        id_data: bodyReq.id_data,
         id_akun: '3fa0b5c0-67e',
         nama: bodyReq.nama,
         NIK: bodyReq.NIK,
         waktu: bodyReq.waktu,
         nominal: bodyReq.nominal,
         jangka: bodyReq.jangka,
-        no_hp: bodyReq.no_hp
-    }
-    console.log(bodyReq);
-    const filePath = './public/data/data.json'
-
-    let existingData = [];
-    try {
-        const existingDataString = fs.readFileSync(filePath, 'utf8');
-        existingData = JSON.parse(existingDataString);
-    } catch (err) {
-        // File mungkin belum ada atau tidak valid JSON
-        console.error('Error reading existing file:', err);
-    }
-
-    // Data JSON yang akan ditambahkan ke array
-    const newData = {
-        id_data: bodyReq.id,
-        status: bodyReq.status
-    };
-
-    // Pengecekan apakah id_data sudah ada dalam array
-    const isIdDataExists = existingData.some(item => item.id_data === newData.id_data);
-
-    if (!isIdDataExists) {
-        // Tambahkan data baru ke dalam array
-        existingData.push(newData);
-
-        // Tulis array kembali ke file
-        fs.writeFile(filePath, JSON.stringify(existingData), 'utf8', (err) => {
-            if (err) {
-                console.error('Error writing file:', err);
-            } else {
-                console.log('Data JSON berhasil ditambahkan dan disimpan ke file:', filePath);
-            }
-        });
-    } else {
-        console.log('Data dengan id_data yang sama sudah ada. Tidak perlu menulis ulang.');
+        no_hp: bodyReq.no_hp,
+        ket: bodyReq.status
     }
 
     db.query(sql, [data], (err) => {
