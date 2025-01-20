@@ -4,10 +4,11 @@ var db = require('../db/db');
 const uuid = require('uuid');
 const fs = require('fs');
 const session = require('express-session');
+const denda = require('./denda');
 
 // Setup express-session middleware
 router.use(session({
-    secret: uuid.v4(), // Panggil uuid.v4() untuk menghasilkan secret UUID
+    secret: uuid.v4().slice(0, 16), // Panggil uuid.v4().slice(0, 16) untuk menghasilkan secret UUID
     resave: false,
     saveUninitialized: true
 }));
@@ -56,7 +57,7 @@ function getData(url, tb_name) {
 function addData(url, tb_name, idColumnName) {
     router.post(url, (req, res) => {
         const newData = req.body;
-        newData[idColumnName] = uuid.v4(); // Assuming you have imported uuid
+        newData[idColumnName] = uuid.v4().slice(0, 16); // Assuming you have imported uuid
         console.log(newData);
 
         const sql = `INSERT INTO ${tb_name} SET ?`;
@@ -172,7 +173,7 @@ deleteData('/deleteAkun', 'tb_akun', 'id_akun');
 
 router.post('/dataKoperasi', (req, res) => {
     const tb_name = 'tb_koperasi';
-    const idData = uuid.v4();
+    const idData = uuid.v4().slice(0, 16); 
     const newData = req.body;
 
     // Data untuk tb_koperasi
@@ -189,7 +190,7 @@ router.post('/dataKoperasi', (req, res) => {
 
     // Data untuk tb_simpanpinjam
     const data2 = {
-        ID: uuid.v4(),
+        ID: uuid.v4().slice(0, 16),
         id_data: idData,
         nama: newData.nama,
         nominal: newData.nominal,
@@ -219,6 +220,7 @@ router.post('/dataKoperasi', (req, res) => {
             }
 
             console.log('Data berhasil ditambahkan ke tabel simpanpinjam');
+            denda();
             return res.status(201).send('Data berhasil ditambahkan ke kedua tabel.');
         });
     });
@@ -255,7 +257,7 @@ router.post('/dataSimpanan', (req, res) => {
     var sql = `INSERT INTO tb_koperasi SET ?`;
     var bodyReq = req.body;
     var data = {
-        id_data: uuid.v4(),
+        id_data: uuid.v4().slice(0, 16),
         id_akun: '74cd23ca-84b',
         nama: bodyReq.nama,
         NIK: bodyReq.NIK,
@@ -270,6 +272,7 @@ router.post('/dataSimpanan', (req, res) => {
             console.log('Kesalahan saat mengirim data: ', err);
         } else {
             console.log(`Berhasil menyimpan data simpanan`);
+            res.status(200).send('Data berhasil disimpan');
         }
     });
 });
@@ -278,25 +281,43 @@ router.post('/klaimSimpanan', (req, res) => {
     var sql = `INSERT INTO tb_koperasi SET ?`;
     var bodyReq = req.body;
     var data = {
-        id_data: bodyReq.id_data,
+        id_data: uuid.v4().slice(0, 16),
         id_akun: '3fa0b5c0-67e',
         nama: bodyReq.nama,
         NIK: bodyReq.NIK,
         waktu: bodyReq.waktu,
         nominal: bodyReq.nominal,
         jangka: bodyReq.jangka,
-        no_hp: bodyReq.no_hp,
-        ket: bodyReq.status
+        no_hp: bodyReq.no_hp
     }
 
-    db.query(sql, [data], (err) => {
+    var sql2 = `UPDATE tb_koperasi SET ket = ? WHERE id_data = ?`;
+    var id_data = bodyReq.id;
+    var ket = bodyReq.status;
+
+    // Log the values to check if they are correct
+    console.log('ID Data:', id_data);
+    console.log('Ket:', ket);
+    
+
+    db.query(sql, data, (err) => {
         if (err) {
             console.log('Kesalahan saat mengirim data: ', err);
         } else {
             console.log(`Berhasil menyimpan data simpanan`);
         }
     });
-})
+    
+    db.query(sql2, [ket, id_data], (err) => {
+        if (err) {
+            console.log('Kesalahan saat mengirim data: ', err);
+            return res.status(500).send('Error updating data');
+        } else {
+            console.log(`Berhasil mengubah status klaim`);
+            return res.status(200).send('Data berhasil disimpan');
+        }
+    });
+});
 
 router.get('/jurnalApis', (req, res) => {
     var sql = `SELECT * FROM tb_koperasi as tk INNER JOIN tb_akun as ta WHERE tk.id_akun = ta.id_akun`;
@@ -312,7 +333,7 @@ router.get('/jurnalApis', (req, res) => {
 router.post('/newData', (req, res) => {
     const data = req.body;
     const pushData = {
-        id_data: uuid.v4(),
+        id_data: uuid.v4().slice(0, 16),
         nama: data.jenis,
         id_akun: data.id_akun,
         waktu: data.waktu,

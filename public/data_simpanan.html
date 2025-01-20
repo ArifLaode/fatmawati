@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>Data Simpanan</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -79,6 +79,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Detail Transaksi</h6>
+                        <a class="collapse-item" href="/dataMasuk">Tambah Data</a>
                         <a class="collapse-item" href="/dataSimpanan">Simpanan</a>
                         <a class="collapse-item" href="/dataPinjaman">Pinjaman</a>
                         <a class="collapse-item" href="/jurnalUmum">Jurnal Umum</a>
@@ -250,7 +251,7 @@
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                                 rowspan="1" colspan="1"
                                                                 aria-label="Office: activate to sort column ascending"
-                                                                style="width: 115px;">Nomor Telepon</th>
+                                                                style="width: 115px;">Tanggal</th>
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                                 rowspan="1" colspan="1"
                                                                 aria-label="Age: activate to sort column ascending"
@@ -517,7 +518,7 @@
                     nama: $('#nama').val(),
                     NIK: $('#NIK').val(),
                     waktu: $('#tanggal').val(),
-                    nominal: $('#nominal').val(),
+                    nominal: parseInt($('#nominal').val().replace(/\./g, ''), 10),
                     jangka: $('#jangka').val(),
                     no_hp: $('#hp').val()
                 }
@@ -546,30 +547,15 @@
             }
         }
 
-        let claimedIds = [];
-
-        $(document).ready(function () {
-
-            // AJAX untuk mendapatkan data dari server
-            $.ajax({
-                url: 'data/data.json',
-                dataType: 'json',
-                success: function (data) {
-                    // Mengisi array claimedIds dengan id_data dari data yang diterima
-                    claimedIds.push(...data.map(item => item.id_data));
-
-                    // Lakukan sesuatu dengan data yang diterima dari server
-                    console.log('Data yang diterima dari server:', data);
-
-                    // Anda dapat memproses data dan menampilkan pada halaman web
-                    // Contoh: Menambahkan data ke tabel atau elemen lainnya
-                },
-                error: function (error) {
-                    console.error('Error fetching data from server:', error);
-                }
-            });
-        });
-
+        function formattedDate(dateString) {
+                const options = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                };
+                const formattedDate = new Date(dateString).toLocaleDateString('id-ID', options);
+                return formattedDate;
+            }
 
         $(document).ready(function () {
 
@@ -584,14 +570,13 @@
                         const nominal = item.nominal;
                         var codeAkunCell = $('<td>').text(item.id_akun);
                         var namaCell = $('<td>').text(item.nama);
-                        var rekeningCell = $('<td>').text(item.no_hp);
+                        var rekeningCell = $('<td>').text(formattedDate(item.waktu));
                         var nominalCell = $('<td>').text(formatCurrency(nominal));
                         var tempoCell = $('<td>').text(item.jangka);
 
                         const actionsCell = $('<td>');
-
-                        const isIdClaimed = claimedIds.includes(item.id_data);
-
+                        const isIdClaimed = item.ket === 'diklaim';
+                        console.log(item);
                         if (!isIdClaimed) {
                             const claimButtn = $('<button>').addClass('btn btn-primary')
                                 .html('<i class="fas fa-check"></i>')
@@ -639,17 +624,17 @@
                 // Menghitung jumlah bunga
                 let jumlahBunga = (nominal * bunga) / 100;
                 var totalTabungan = nominal + jumlahBunga;
-                var date = new Date();
+                var date = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
                 const data = {
                     id: item.id_data,
                     nama: item.nama,
                     NIK: item.NIK,
                     nominal: totalTabungan,
-                    jangka: '0',
+                    jangka: 0,
                     waktu: date,
                     no_hp: item.no_hp,
-                    status: 'claimed'
+                    status: 'diklaim'
                 }
                 var dataJSON = JSON.stringify(data);
                 var konfirmasi = window.confirm(

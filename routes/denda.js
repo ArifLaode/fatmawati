@@ -89,9 +89,5 @@ async function hitunganDenda() {
     });
 }
 
-router.get('/detail', (req, res) => {
-    hitunganDenda();
-    res.send('Denda berhasil dihitung');
-});
 
-module.exports = router;
+module.exports = hitunganDenda;
