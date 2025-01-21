@@ -157,7 +157,7 @@ router.get('/dataKoperasi', function (req, res) {
             return res.send(dataFill);
         }
     });
-})
+});
 
 function formatDate(date) {
     const dateObj = new Date(date);

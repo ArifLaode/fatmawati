@@ -353,6 +353,35 @@ router.post('/newData', (req, res) => {
     });
 });
 
+router.get('/dataDashboard', function (req, res) {
+    var sql = 'SELECT * FROM tb_koperasi as tk INNER JOIN tb_akun as ta WHERE tk.id_akun = ta.id_akun';
+    db.query(sql, function (err, data) {
+        if (err) {
+            console.log('Tidak dapat mengambil data', err);
+        } else {
+            // return res.send(data);
+            const dataFill = data.map(row => ({
+                nama: row.nama,
+                date: formatDate(row.waktu),
+                nominal: row.nominal,
+                posisi: row.posisi_saldo
+            }));
+
+            return res.send(dataFill);
+        }
+    });
+});
+
+
+function formatDate(date) {
+    const dateObj = new Date(date);
+
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const year = dateObj.getFullYear();
+    
+    return `${day}-${month}-${year}`
+}
 
 
 // Export the router

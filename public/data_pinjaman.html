@@ -681,6 +681,7 @@
 
                 function handleDownload(item) {
                     var nom = formatRupiah(item.cicilan);
+                    console.log(item);
                     const options = {
                         weekday: 'long',
                         year: 'numeric',
@@ -690,7 +691,8 @@
                     const today = new Date();
                     const formatTanggal = today.toLocaleDateString('id-ID', options);
                     console.log(formatTanggal);
-                    var pembayaran = item.jangka - item.record;
+                    var pembayaran = item.terbayar + 1;
+                    var sisa = item.jangka - pembayaran;
                     var dd = {
                         content: [{
                                 style: "header",
@@ -726,7 +728,7 @@
                                             text: "Nominal",
                                             alignment: 'center'
                                         }, {
-                                            text: "Pembayaran",
+                                            text: "Pembayaran ke",
                                             alignment: 'center'
                                         }, {
                                             text: "Sisa",
@@ -739,7 +741,7 @@
                                             text: pembayaran,
                                             alignment: 'center'
                                         }, {
-                                            text: item.record,
+                                            text: sisa,
                                             alignment: 'center'
                                         }]
                                     ]
