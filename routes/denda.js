@@ -12,6 +12,7 @@ function calculateBill(data) {
 
     const contractDate = new Date(waktu);
     const dueDate = new Date(contractDate);
+    console.log(waktu);
     let waktuTempo;
     if (sisa === 0) {
         waktuTempo = 1;
@@ -21,7 +22,6 @@ function calculateBill(data) {
         return 0;
     }
     dueDate.setMonth(dueDate.getMonth() + waktuTempo);
-    console.log(data);
 
     const currentDate = new Date();
     currentDate.setHours(0, 0, 0, 0);
@@ -69,8 +69,6 @@ async function hitunganDenda() {
                     cicilan: row.cicilan,
                 };
                 const bill = calculateBill(data);
-
-                console.log(bill);
 
                 const sql2 = 'UPDATE tb_simpanpinjam SET denda = ?, cicilan = ? WHERE id_data = ?';
                 db.query(sql2, [bill.penalty, bill.baseBill, row.id_data], (err, result) => {

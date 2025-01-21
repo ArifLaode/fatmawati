@@ -5,6 +5,7 @@ const uuid = require('uuid');
 const fs = require('fs');
 const session = require('express-session');
 const denda = require('./denda');
+const hitunganDenda = require('./denda');
 
 // Setup express-session middleware
 router.use(session({
@@ -118,27 +119,29 @@ function editData(url, tb_name, idColumnName) {
 router.get('/dataPinjam', (req, res) => {
     var sql = `
         SELECT 
-            tb_koperasi.id_akun, 
+            tb_koperasi.NIK, 
             tb_koperasi.nama, 
             tb_koperasi.id_data, 
             tb_koperasi.nominal, 
             tb_simpanpinjam.cicilan, 
             tb_koperasi.waktu, 
             tb_koperasi.jangka, 
-            tb_simpanpinjam.terbayar
+            tb_simpanpinjam.terbayar,
+            tb_simpanpinjam.denda,
+            tb_simpanpinjam.ID
         FROM tb_koperasi 
         INNER JOIN tb_simpanpinjam 
         ON tb_koperasi.id_data = tb_simpanpinjam.id_data 
         WHERE tb_koperasi.id_akun = ?`;
     
-    var id_akun = '9ca10809-04e'; // Ganti dengan ID lengkap
+    var id_akun = '9ca10809-04e'; 
     db.query(sql, [id_akun], (err, data) => {
         if (err) {
             console.error('SQL Error:', err);
             return res.status(500).json({ error: 'Gagal mengambil data dari database.' });
         }
         const dataSend = data.map(item => ({
-            id_akun: item.id_akun,
+            NIK: item.NIK,
             id_data: item.id_data,
             nama: item.nama,
             nominal: item.nominal,
@@ -146,7 +149,10 @@ router.get('/dataPinjam', (req, res) => {
             waktu: item.waktu,
             jangka: item.jangka,
             terbayar: item.terbayar,
+            denda: item.denda,
+            ID: item.ID
         }));
+        hitunganDenda();
         return res.json(dataSend);
     });
 });
@@ -227,18 +233,31 @@ router.post('/dataKoperasi', (req, res) => {
 });
 
 router.post('/dataCicil', (req, res) => {
-        const data = req.body;
-        console.log(data);
-        const update = data.terbayar + 1;
-        const sql = 'update tb_simpanpinjam set ? where ID = ?';
-        db.query(sql, update, data.ID), (err, result) => {
-            if (err) {
-                console.log('terjadi kesalahan dalam update pinjaman');
-                return res.status(500).send('terjadi kesalahan server');
-            } 
-            return res.status(201).send('data berhasil dikirmkan');
+    const data = req.body;
+    console.log(data);
+    
+    // Validasi data
+    if (typeof data.terbayar !== 'number' || typeof data.id_data !== 'string') {
+        return res.status(400).send('Data tidak valid: terbayar harus angka dan id_data harus string');
+    }
+
+    const update = data.terbayar + 1;
+    console.log('data terbayar', update);
+    
+    const sql = 'UPDATE tb_simpanpinjam AS ts SET ts.terbayar = ? WHERE ID = ?';
+    db.query(sql, [update, data.id_data], (err, result) => {
+        if (err) {
+            console.error('Error during update:', err); // Log error
+            return res.status(500).send('Terjadi kesalahan server');
+        } 
+        
+        if (result.affectedRows === 0) {
+            return res.status(404).send('Data tidak ditemukan');
         }
+
+        return res.status(200).send('Data berhasil dikirimkan');
     });
+});
 
 
 router.get('/dataSimpan', (req, res) => {

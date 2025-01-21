@@ -239,13 +239,17 @@
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                                 rowspan="1" colspan="1"
                                                                 aria-label="Name: activate to sort column ascending"
-                                                                style="width: 162px;">Kode Akun</th>
+                                                                style="width: 162px;">NIK</th>
                                                             <th class="sorting sorting_desc" tabindex="0"
                                                                 aria-controls="dataTable" rowspan="1" colspan="1"
                                                                 aria-label="Position: activate to sort column ascending"
                                                                 aria-sort="descending" style="width: 249px;">Nama
                                                                 Peminjam
                                                             </th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Age: activate to sort column ascending"
+                                                                style="width: 51px;">Tanggal Pinjaman</th>
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                                 rowspan="1" colspan="1"
                                                                 aria-label="Office: activate to sort column ascending"
@@ -256,8 +260,12 @@
                                                                 style="width: 51px;">Cicilan</th>
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                                 rowspan="1" colspan="1"
-                                                                aria-label="Age: activate to sort column ascending"
-                                                                style="width: 51px;">Tanggal Pinjaman</th>
+                                                                aria-label="Salary: activate to sort column ascending"
+                                                                style="width: 97px;">Denda</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Salary: activate to sort column ascending"
+                                                                style="width: 97px;">Total</th>
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                                 rowspan="1" colspan="1"
                                                                 aria-label="Age: activate to sort column ascending"
@@ -586,30 +594,17 @@
                         $.each(data, function (index, item) {
                             const row = $('<tr>');
 
-                            let bunga;
-                            let nominal = item.nominal;
-
-                            if (item.jangka < 6) {
-                                bunga = 3;
-                            } else if (item.jangka <= 12) {
-                                bunga = 4;
-                            } else if (item.jangka <= 24) {
-                                bunga = 5;
-                            } else {
-                                bunga = 6;
-                            }
-
-                            const totalCicilan = hitungCicilan(nominal, bunga, item.jangka);
-                            const cicil = formatRupiah(totalCicilan);
-
-                            const idCell = $('<td>').text(item.id_akun);
+                            const total = item.cicilan + item.denda;
+                            console.log(item);
+                            const idCell = $('<td>').text(item.NIK);
                             const namaCell = $('<td>').text(item.nama);
                             const nomCell = $('<td>').text(formatRupiah(item.nominal));
-                            const cicilCell = $('<td>').text(cicil);
+                            const cicilCell = $('<td>').text(formatRupiah(item.cicilan)); 
                             const tempoCell = $('<td>').text(item.jangka);
-                            const pembayaranCell = $('<td>').text(Math.max(item.terbayar - item.jangka, 0));
+                            const pembayaranCell = $('<td>').text(item.jangka - item.terbayar);
                             const tanggalCell = $('<td>').text(formattedDate(item.waktu));
-
+                            const dendaCell = $('<td>').text(formatRupiah(item.denda));
+                            const totalCell = $('<td>').text(formatRupiah(total));
                             const actionsCell = $('<td>');
                             const editButton = $('<button>')
                                 .addClass('btn btn-group btn-success')
@@ -628,7 +623,7 @@
                                 });
 
                             actionsCell.append(downloadButton, editButton);
-                            row.append(idCell, namaCell, nomCell, cicilCell, tanggalCell, tempoCell, pembayaranCell, actionsCell);
+                            row.append(idCell, namaCell, tanggalCell, nomCell, cicilCell, dendaCell, totalCell, tempoCell, pembayaranCell, actionsCell);
                             tbody.append(row);
                         });
                     },
@@ -650,12 +645,7 @@
                     if (konfirmasi) {
                         console.log('Edit:', item);
                         const data = {
-                            id_data: item.id_data,
-                            ID: item.ID,
-                            nama: item.nama,
-                            waktu: formatDate,
-                            nominal: item.cicilan,
-                            jangka: item.jangka,
+                            id_data: item.ID,
                             terbayar: item.terbayar
                         }
                         var jsonData = JSON.stringify(data);
@@ -809,7 +799,9 @@
                 var NIK = document.getElementById('NIK').value;
                 var dateTrans = document.getElementById('date').value;
                 var tangga = formatTanggal(dateTrans);
-                var nominal = $('#nominal').val();
+                var nominal = document.getElementById('nominal').value;
+                var nominalString = nominal.replace(/\./g, ''); // Menghapus titik
+                nominalString = nominalString.toString(); // Pastikan menjadi string
                 var jangka = parseInt(document.getElementById('jangka').value);
                 var hp = document.getElementById('hp').value;
                 var bunga;
@@ -823,8 +815,8 @@
                 } else {
                     bunga = 6;
                 }
-                totalCicilan = hitungCicilan(nominal, bunga, jangka);
-                var nom = formatRupiah(nominal);
+                totalCicilan = hitungCicilan(nominalString, bunga, jangka);
+                var nom = formatRupiah(nominalString);
                 var cicil = formatRupiah(totalCicilan);
 
                 const keys =

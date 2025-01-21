@@ -241,7 +241,7 @@
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                                 rowspan="1" colspan="1"
                                                                 aria-label="Name: activate to sort column ascending"
-                                                                style="width: 162px;">Kode Akun</th>
+                                                                style="width: 162px;">NIK</th>
                                                             <th class="sorting sorting_desc" tabindex="0"
                                                                 aria-controls="dataTable" rowspan="1" colspan="1"
                                                                 aria-label="Position: activate to sort column ascending"
@@ -252,6 +252,10 @@
                                                                 rowspan="1" colspan="1"
                                                                 aria-label="Office: activate to sort column ascending"
                                                                 style="width: 115px;">Tanggal</th>
+                                                            <!-- <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Office: activate to sort column ascending"
+                                                                style="width: 115px;">Tanggal Klaim</th> -->
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                                 rowspan="1" colspan="1"
                                                                 aria-label="Age: activate to sort column ascending"
@@ -566,9 +570,12 @@
                     const tbody = $('#data');
 
                     $.each(data, function (index, item) {
+                        var claimWaktu = new Date(item.waktu);
+                        var Waktu = new Date(claimWaktu.setMonth(claimWaktu.getMonth() + item.jangka));
+                        console.log(Waktu);
                         const row = $('<tr>');
                         const nominal = item.nominal;
-                        var codeAkunCell = $('<td>').text(item.id_akun);
+                        var codeAkunCell = $('<td>').text(item.NIK);
                         var namaCell = $('<td>').text(item.nama);
                         var rekeningCell = $('<td>').text(formattedDate(item.waktu));
                         var nominalCell = $('<td>').text(formatCurrency(nominal));
@@ -576,7 +583,6 @@
 
                         const actionsCell = $('<td>');
                         const isIdClaimed = item.ket === 'diklaim';
-                        console.log(item);
                         if (!isIdClaimed) {
                             const claimButtn = $('<button>').addClass('btn btn-primary')
                                 .html('<i class="fas fa-check"></i>')
