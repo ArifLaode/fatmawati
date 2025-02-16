@@ -260,18 +260,18 @@
                                                     </td>
                                                     <td id="totalPendapatan"></td>
                                                 </tr>
-                                                <tr>
+                                                <!-- <tr>
                                                     <td>
                                                         <b>Total Aset</b>
                                                     </td>
                                                     <td id="totalAset"></td>
-                                                </tr>
-                                                <tr>
+                                                </tr> -->
+                                                <!-- <tr>
                                                     <td>
                                                         <b>Estimasi Pendapatan dari Pinjaman</b>
                                                     </td>
                                                     <td id="estimasiPendapatan"></td>
-                                                </tr>
+                                                </tr> -->
                                                 <tr>
                                                     <td>
                                                         <b>Pengeluaran</b>
@@ -279,11 +279,11 @@
                                                     <td id="totalPengeluaran"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
+                                                    <!-- <td>
                                                         <b>Estimasi Pengeluaran dari Simpanan</b>
                                                     </td>
                                                     <td id="totalPengeluaranEsti"></td>
-                                                </tr>
+                                                </tr> -->
                                                 <tr>
                                                     <td>
                                                         <b>Laba</b>
@@ -388,7 +388,7 @@
         let bunga = 0;
         var modal = 10000000;
         let totalOperasional = 0;
-        let Pendapaatan = 0;
+        let Pendapatan = 0;
         let PendapatanEsti = 0;
         let Pengeluaran = 0;
         let PengeluaranEsti = 0;
@@ -434,14 +434,12 @@
                     bungaSimpan += (bunga / 100) * item.nominal;
                     $('#bungaSimpan').text(formatCurrency(bungaSimpan));
                 }
-                totalPendapatan = dataPendapatan + dataBunga +
-                    modal;
-                totalPengeluaran = bungaSimpan + dataPengeluaran;
-                console.log(totalPendapatan);
+                totalPendapatan = dataPengeluaran
+                totalPengeluaran = dataPendapatan
                 $('#totalPendapatan').text(formatCurrency(totalPendapatan));
                 $('#totalPengeluaran').text(formatCurrency(totalPengeluaran));
             });
-
+            
             let totalAssets = 0;
             data.forEach(item => {
                 if (item.nama === 'aset') {
@@ -451,18 +449,18 @@
                 }
             });
 
+            Pendapatan = dataPendapatan + totalAssets;
+            console.log(`total pendaptanP: ${dataPendapatan}`);
+            $('#totalPendapatan').text(formatCurrency(Pendapatan));
+
+            console.log(totalAssets);
+
             saldoValue = (dataPendapatan + modal + totalAssets) - (dataPengeluaran + totalOperasional);
             saldoValue1 = (dataPendapatan + totalAssets) - (dataPengeluaran + totalOperasional);
-            Pendapatan = dataPendapatan + modal + totalAssets;
-            console.log('Pendapaatan adalah: ', Pendapatan);
-            PendapatanEsti = dataPendapatan + modal + totalAssets + dataBunga;
             Pengeluaran = dataPengeluaran + totalOperasional;
-            PengeluaranEsti = bungaSimpan;
-            $('#totalPendapatan').text(formatCurrency(Pendapatan));
-            $('#totalAset').text(formatCurrency(totalAssets));
-            $('#estimasiPendapatan').text(formatCurrency(dataBunga));
-            $('#totalPengeluraran').text(formatCurrency(Pengeluaran));
-            $('#totalPengeluaranEsti').text(formatCurrency(PengeluaranEsti));
+            
+            
+            $('#totalPengeluaran').text(formatCurrency(Pengeluaran));
             $('#total').text(formatCurrency(saldoValue1));
         }
 
@@ -477,7 +475,7 @@
             const docDefinition = {
                 pageSize: 'A4',
                 content: [{
-                        text: `Jurnal Laba Rugi Tahun 2024`,
+                        text: `Jurnal Laba Rugi`,
                         style: 'header'
                     },
                     {
@@ -493,10 +491,10 @@
                             body: [
                                 ['Nama', 'Nilai'],
                                 ['Pendapatan', formatCurrency(Pendapatan)],
-                                ['Total Aset', formatCurrency(totalPengeluaran)],
-                                ['Estimasi Pendapatan dari Pinjaman', formatCurrency(dataBunga)],
+                                // ['Total Aset', formatCurrency(totalPengeluaran)],
+                                // ['Estimasi Pendapatan dari Pinjaman', formatCurrency(dataBunga)],
                                 ['Pengeluaran', formatCurrency(Pengeluaran)],
-                                ['Estimasi Pengeluaran dari Simpanan', formatCurrency(bungaSimpan)],
+                                // ['Estimasi Pengeluaran dari Simpanan', formatCurrency(bungaSimpan)],
                                 ['Laba', formatCurrency(saldoValue1)]
                             ]
                         }
